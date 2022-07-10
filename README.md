@@ -96,10 +96,9 @@
                 if ((document.getElementById("mcname").value !== "") & (document.getElementById("lunaadd").value !== "")) {
                     document.getElementById("p").innerHTML = "you are registered for the tournament";
                 }
-            }
-          
-          lol();
-         var xhr = new XMLHttpRequest();
+                
+                
+                 var xhr = new XMLHttpRequest();
 xhr.open("POST", "https://galacticau.fun/postLuna.php", true);
 
 //Send the proper header information along with the request
@@ -120,6 +119,13 @@ console.log(this.status);
 }
            var today=new Date()
 xhr.send("nplayer=Eddie6666&nlune=starboy&ndate="+today.toLocaleDateString("en-US"));
+                
+                
+                
+            }
+          
+          
+        
         </script>
       
       <prize class="container">
