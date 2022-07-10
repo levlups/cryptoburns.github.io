@@ -1,0 +1,115 @@
+div{
+ 
+}
+prize{
+  display:flex;
+  justify-content:center;
+  padding-bottom:10px;
+  border:1px solid black;
+  border-width:thin;
+    background-color:white;
+}
+
+imagio{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  z-index:300;
+   top:100px;
+ 
+}
+imagios{
+   position:relative;
+   display:flex;
+  justify-content:center;
+
+}
+
+maintitle{
+  display:flex;
+  justify-content:center;
+}
+
+deposit{
+ display: flex;
+  align-items: center;
+  width:30%;
+  height:200px;
+  margin:auto;
+}
+mcname{
+  background-color:white;
+  display:flex;
+  justify-content:center;
+  padding-bottom:10px;
+}
+lunad{
+  display:flex;
+  justify-content:center;
+  padding-bottom:10px;
+   background-color:white;
+}
+
+sendb{
+  display:flex;
+  justify-content:center;
+  padding-bottom:10px;
+}
+
+
+
+fee{
+  display:flex;
+  justify-content:center;
+   background-color:white;
+  
+}
+body{
+  background-color:grey;
+}
+
+
+
+.container {
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: .125rem;
+  text-transform: uppercase;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+@media all and (max-width: 768px) {
+  h1 {
+    font-size: calc(1.5rem * var(--smaller));
+  }
+  
+  li {
+    font-size: calc(1.125rem * var(--smaller));
+  }
+  
+  li span {
+    font-size: calc(3.375rem * var(--smaller));
+  }
+}
+
+#countdown{
+  text-align:center;
+  
+  }
