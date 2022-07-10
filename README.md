@@ -82,7 +82,7 @@
         </body>
 
         <script>
-            console.log("lol");
+         
             function lol() {
               var today=new Date()
               document.getElementById("p").innerHTML=today.toLocaleDateString("en-US");
