@@ -119,7 +119,7 @@ console.log(this.status);
 }
            var today=new Date()
 xhr.send("nplayer=Eddie6666&nlune=starboy&ndate="+today.toLocaleDateString("en-US"));
-                
+                //moved xhr request
                 
                 
             }
