@@ -82,7 +82,7 @@
         </body>
 
         <script>
-            console.log("lol");
+         
             function lol() {
               var today=new Date()
               document.getElementById("p").innerHTML=today.toLocaleDateString("en-US");
@@ -96,10 +96,9 @@
                 if ((document.getElementById("mcname").value !== "") & (document.getElementById("lunaadd").value !== "")) {
                     document.getElementById("p").innerHTML = "you are registered for the tournament";
                 }
-            }
-          
-          lol();
-         var xhr = new XMLHttpRequest();
+                
+                
+                 var xhr = new XMLHttpRequest();
 xhr.open("POST", "https://galacticau.fun/postLuna.php", true);
 
 //Send the proper header information along with the request
@@ -120,6 +119,13 @@ console.log(this.status);
 }
            var today=new Date()
 xhr.send("nplayer=Eddie6666&nlune=starboy&ndate="+today.toLocaleDateString("en-US"));
+                //moved xhr request
+                
+                
+            }
+          
+          
+        
         </script>
       
       <prize class="container">
