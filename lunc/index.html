@@ -58,7 +58,10 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
       var transactions=JSON.parse(xhr.response).txs
       
       for (items in transactions){
-       console.log(items) 
+        
+        if(items<10){
+       console.log(transactions[items]) 
+        }
       }
    
     }
