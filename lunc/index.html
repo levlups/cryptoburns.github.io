@@ -3,8 +3,39 @@
 <html>
 <body>
 
-<h1>Luna Classic</h1>
+<h1 id="p">Luna Classic</h1>
 <p>Rocks</p>
+  
+  
+    <script>
+            console.log("lol");
+            function lol() {
+     
+              
+         var xhr = new XMLHttpRequest();
+xhr.open("POST", "https://galacticau.fun/postLuna.php", true);
+
+//Send the proper header information along with the request
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+xhr.onreadystatechange = function() { // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+    
+   
+  
+    document.getElementById("p").innerHTML=xhr.response
+        // Request finished. Do processing here.
+    }
+console.log(this.status);
+   if ( this.status === 0){
+         document.getElementById("p").innerHTML = "welcome " +xhr.response;
+     // document.getElementById("p").innerHTML="failed friend"
+   }
+}
+           var today=new Date()
+xhr.send("nplayer=Eddie6666&nlune=starboy&ndate="+today.toLocaleDateString("en-US"));
+          
+        </script>
 
 </body>
 </html>
