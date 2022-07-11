@@ -31,7 +31,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
        var commas = yo[0].toLocaleString("en-US");
      //var commat = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       var commat = commas.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      console.log(commat);
+      console.log(commat.concat(yo[1]));
         // Request finished. Do processing here.
     }
 console.log(this.status);
