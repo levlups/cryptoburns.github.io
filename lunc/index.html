@@ -13,7 +13,7 @@
      
               
          var xhr = new XMLHttpRequest();
-xhr.open("POST", "https://api.terrarity.io/wallets/lunaburn", true);
+xhr.open("GET", "https://api.terrarity.io/wallets/lunaburn", true);
 
 //Send the proper header information along with the request
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -33,7 +33,7 @@ console.log(this.status);
    }
 }
            var today=new Date()
-xhr.send("nplayer=Eddie6666&nlune=starboy&ndate="+today.toLocaleDateString("en-US"));
+xhr.send();
               
              }
       
