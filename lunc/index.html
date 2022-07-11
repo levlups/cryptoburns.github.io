@@ -26,8 +26,11 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
     document.getElementById("p").innerHTML=xhr.response
       var num =JSON.parse(xhr.response).luna[0].burned/1000000
        console.log(JSON.parse(xhr.response).luna[0].burned/1000000);
-         var commas = num.toLocaleString("en-US");
-     var commat = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        
+      var yo=num.split(".");
+       var commas = yo[0].toLocaleString("en-US");
+     //var commat = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      var commat = commas.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       console.log(commat);
         // Request finished. Do processing here.
     }
