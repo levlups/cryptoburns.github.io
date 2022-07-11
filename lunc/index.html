@@ -24,7 +24,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
    
   
     document.getElementById("p").innerHTML=xhr.response
-       console.log(JSON.parse(xhr.response).luna[0].burned);
+       console.log(JSON.parse(xhr.response).luna[0].burned/1000000);
         // Request finished. Do processing here.
     }
 console.log(this.status);
