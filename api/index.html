@@ -32,8 +32,14 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
            console.log(JSON.parse(xhr.response).txs[0])
        console.log(JSON.parse(xhr.response).txs[0].raw_log[0][0])
       
-      
-      
+      var transact=JSON.parse(xhr.response).txs
+      for (ninja in transact){
+        
+    
+          
+             console.log(transact[ninja])
+        
+      }
       
       
       var transactions=JSON.parse(xhr.response).txs
