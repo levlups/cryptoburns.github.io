@@ -1,4 +1,6 @@
 "use strict";
+
+console.log("yo");
 var MSP = function(json) {
   var WIDTH = 64;
   var HEIGHT = 32;
