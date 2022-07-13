@@ -38,9 +38,19 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
     
           
              console.log(transact[ninja])
-           console.log(transact[ninja].timestamp.split("T")[0].reverse().replace(/-/g,'/'))
-        
+           console.log(transact[ninja].timestamp.split("T")[0].replace(/-/g,'/'))
+        console.log(reverseString(transact[ninja].timestamp.split("T")[0].replace(/-/g,'/')))
       }
+      
+      function reverseString(str) {
+
+    // empty string
+    let newString = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+        newString += str[i];
+    }
+    return newString;
+}
       
       
       var transactions=JSON.parse(xhr.response).txs
