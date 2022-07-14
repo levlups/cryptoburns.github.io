@@ -45,10 +45,11 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
    // document.getElementById("p").innerHTML=xhr.response *** check this out
      console.log(JSON.parse(xhr.response))
 
+
       
-      var transactions=JSON.parse(xhr.response).txs
+     // var transactions=JSON.parse(xhr.response).txs
       
-      for (items in transactions){
+    /*  for (items in transactions){
         
         if(transactions[items].sender == "terra1hq2yvwr6m39hafsnyqsuj5h4swtuxqr8m5c4k0"){
        console.log(items+":"+transactions[items].qty/1000000 +":"+transactions[items].ts.split(",")[0]) 
@@ -57,7 +58,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
         }
       }
    
-    }
+    }*/
 
    if ( this.status === 0){
          document.getElementById("p").innerHTML = "welcome " +xhr.response;
