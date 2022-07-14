@@ -25,3 +25,8 @@ const timestampInSeconds = Math.floor(date.getTime() / 1000);
 console.log(timestampInSeconds);
 
 
+
+           var today=new Date()
+console.log(today.toLocaleDateString("en-US"))
+
+
