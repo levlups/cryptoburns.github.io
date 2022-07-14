@@ -1,13 +1,8 @@
 
-const myHeaders = new Headers();
-
-const myRequest = new Request('https://galacticau.fun/postLuna.php/?nplayer=michael', {
-  method: 'POST',
-  headers: myHeaders,
-  mode: 'cors',
-  cache: 'default',
+ fetch('https://galacticau.fun/postLuna.php/?nplayer=michael')
+.then(data => {
+return data.text();
+})
+.then(post => {
+//console.log(post.title);
 });
-fetch('myRequest')
-  .then(response => response.text())
-  .then(data => console.log(data));
-
