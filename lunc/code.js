@@ -42,7 +42,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 
    // document.getElementById("p").innerHTML=xhr.response *** check this out
-     console.log(xhr.response)
+     console.log(JSON.parse(xhr.response))
 
       
       var transactions=JSON.parse(xhr.response).txs
