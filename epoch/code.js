@@ -1,4 +1,4 @@
-function timeConverter(UNIX_timestamp){
+/*function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var year = a.getFullYear();
@@ -28,9 +28,10 @@ const timestampInMs = date.getTime();
 //console.log(timestampInSeconds);
 
 const timestampInSeconds = Math.floor(date.getTime() / 1000);
-document.getElementById("go").innerHTML=timeConverter(timestampInSeconds)
+document.getElementById("go").innerHTML=timeConverter(timestampInSeconds)*/
 
            var today=new Date()
 console.log(today.toLocaleDateString("en-US"))
+console.log(today)
 
 
