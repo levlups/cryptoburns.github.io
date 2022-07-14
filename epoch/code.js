@@ -25,8 +25,8 @@ const date = new Date(dateStr);
 const timestampInMs = date.getTime();
 
 // 👇️ timestamp in seconds (Unix timestamp)
-const timestampInSeconds = Math.floor(date.getTime() / 1000);
-console.log(timestampInSeconds);
+//const timestampInSeconds = Math.floor(date.getTime() / 1000);
+//console.log(timestampInSeconds);
 
 
 
