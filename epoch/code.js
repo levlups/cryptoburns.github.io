@@ -31,6 +31,8 @@ const timestampInSeconds = Math.floor(date.getTime() / 1000);
 document.getElementById("go").innerHTML=timeConverter(timestampInSeconds)*/
 
            var today=new Date()
+           
+           console.log(today)
 console.log(today.toLocaleDateString("en-US"))
 console.log(today)
 
