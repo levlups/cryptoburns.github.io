@@ -10,4 +10,4 @@ function timeConverter(UNIX_timestamp){
   var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
   return time;
 }
-console.log(timeConverter(0));
+console.log(timeConverter(8888888));
