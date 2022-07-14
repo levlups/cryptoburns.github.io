@@ -45,7 +45,9 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
    // document.getElementById("p").innerHTML=xhr.response *** check this out
      console.log(JSON.parse(xhr.response).txs[0].raw_log)
 
+var cool=JSON.parse(xhr.response).txs[0].raw_log
 
+console.log(JSON.parse(cool))
       
      // var transactions=JSON.parse(xhr.response).txs
       
