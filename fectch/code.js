@@ -1,5 +1,5 @@
 // Example POST method implementation:
-async frunction go(){
+async function go(){
   // Default options are marked with *
   const response = await fetch('https://galacticau.fun/postLuna.php/?nplayer=michael', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
