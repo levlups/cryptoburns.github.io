@@ -1,7 +1,7 @@
 // Example POST method implementation:
-async function postData(url = '', data = {}) {
+
   // Default options are marked with *
-  const response = await fetch(url, {
+  const response = await fetch('https://galacticau.fun/postLuna.php/?nplayer=michael', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
 //mode: 'no-cors', // no-cors
     headers: {
@@ -12,9 +12,6 @@ async function postData(url = '', data = {}) {
   //  body: "nplayer=michael" // body data type must match "Content-Type" header
   });
   return response.text(); // parses JSON response into native JavaScript objects
-}
 
-postData('https://galacticau.fun/postLuna.php/?nplayer=michael', { answer: 42 })
-  .then(data => {
-    console.log(data); // JSON data parsed by `data.json()` call
-  });
+
+
