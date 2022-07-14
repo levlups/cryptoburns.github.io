@@ -13,6 +13,8 @@ function timeConverter(UNIX_timestamp){
 console.log(timeConverter(8888888));
 document.getElementById("go").innerHtml=timeConverter(8888888)
 
+document.getElementById("go").innerHtml="lol"
+
 const dateStr = '2022-04-27';
 
 const date = new Date(dateStr);
