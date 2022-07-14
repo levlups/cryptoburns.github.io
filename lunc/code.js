@@ -56,9 +56,9 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
           
              console.log(transactions[items])
         }
-      }
+      }*/
    
-    }*/
+    }
 
    if ( this.status === 0){
          document.getElementById("p").innerHTML = "welcome " +xhr.response;
