@@ -10,12 +10,11 @@ function timeConverter(UNIX_timestamp){
   var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
   return time;
 }
-console.log(timeConverter(8888888));
 
-const timestampInSeconds = Math.floor(date.getTime() / 1000);
-document.getElementById("go").innerHTML=timeConverter(timestampInSeconds)
 
-//document.getElementById("go").innerHTML="lol"
+
+
+
 
 const dateStr = '2022-04-27';
 
@@ -28,7 +27,8 @@ const timestampInMs = date.getTime();
 //const timestampInSeconds = Math.floor(date.getTime() / 1000);
 //console.log(timestampInSeconds);
 
-
+const timestampInSeconds = Math.floor(date.getTime() / 1000);
+document.getElementById("go").innerHTML=timeConverter(timestampInSeconds)
 
            var today=new Date()
 console.log(today.toLocaleDateString("en-US"))
