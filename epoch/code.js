@@ -36,4 +36,6 @@ document.getElementById("go").innerHTML=timeConverter(timestampInSeconds)*/
 console.log(today.toLocaleDateString("en-US"))
 console.log(today)
 
+//Jul 14, 2022, 12:39:14 PM (UTC−4)
+
 
