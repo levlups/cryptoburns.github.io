@@ -47,7 +47,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
 
 var cool=JSON.parse(xhr.response).txs[0].raw_log
 
-console.log(JSON.parse(cool)[0].events[0])
+console.log(JSON.parse(cool)[0].events[0].attributes[0])
       
      // var transactions=JSON.parse(xhr.response).txs
       
