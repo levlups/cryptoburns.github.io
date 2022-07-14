@@ -27,7 +27,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
            var today=new Date()
 xhr.send();
               
-             }
+             }*/
       
       
       
@@ -42,7 +42,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 
    // document.getElementById("p").innerHTML=xhr.response *** check this out
-     
+     console.log(xhr.response)
 
       
       var transactions=JSON.parse(xhr.response).txs
@@ -66,7 +66,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
            var today=new Date()
 xhr.send();
               
-             }*/
+             }
       
 
 
@@ -83,7 +83,7 @@ xhr.send();
 
 
    
-       function lol() {
+       /*function lol() {
 
          var xhr = new XMLHttpRequest();
 xhr.open("GET", "https://columbus-fcd.terra.dev/v1/txs?offset=0&limit=10&account=terra19kwnqcjgej5pl3wttuv5xllpvjrjmy79tt2f9l", true);
@@ -137,5 +137,5 @@ xhr.send();
               
              }
       
-    //  lol();
+    //  lol();*/
 
