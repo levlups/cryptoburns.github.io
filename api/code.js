@@ -11,7 +11,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
 
    // document.getElementById("p").innerHTML=xhr.response *** check this out
      console.log(JSON.parse(xhr.response).txs[2].logs[0].events[0].attributes[1].value.split("u")[0]/1000000)
- console.log(JSON.parse(xhr.response).txs[2].logs[0].events[3].attributes[1].value)
+// console.log(JSON.parse(xhr.response).txs[2].logs[0].events[3].attributes[1].value)
        console.log(JSON.parse(xhr.response).txs)
       
            console.log(JSON.parse(xhr.response).txs[0])
