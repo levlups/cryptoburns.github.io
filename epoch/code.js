@@ -11,7 +11,9 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 console.log(timeConverter(8888888));
-document.getElementById("go").innerHTML=timeConverter(8888888)
+
+const timestampInSeconds = Math.floor(date.getTime() / 1000);
+document.getElementById("go").innerHTML=timeConverter(timestampInSeconds)
 
 //document.getElementById("go").innerHTML="lol"
 
