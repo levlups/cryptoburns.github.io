@@ -1,12 +1,6 @@
 
-fetch('https://galacticau.fun/postLuna.php/?nplayer=michael', {"nplayer":"jjjjj"})
-.then(data => {
-    // Do some stuff here
-  
-  console.log(data)
-})
-.catch(err => {
-    // Catch and display errors
-})
 
+fetch('https://galacticau.fun/postLuna.php/?nplayer=michael')
+  .then(response => response.text())
+  .then(data => console.log(data));
 
