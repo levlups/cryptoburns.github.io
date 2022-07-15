@@ -1,7 +1,7 @@
 console.log("life is beautiful")
 let url="https://galacticau.fun/postLuna.php"
 fetch(url,{
- cors:"no-cors"   
+ mode:"no-cors"   
 })
     .then(response => {
   console.log(response.text());
