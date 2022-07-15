@@ -7,8 +7,10 @@ fetch(url, {
       mode:'no-cors',
       credentials: 'include',
       method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded', },
-      body: "nplayer=fud",
+      headers: {
+            'Content-Type': 'application/x-www-form-urlencoded', 
+      },
+      body: "nplayer=fud"
 
       }).then(result => console.log('success====:', result))
         .catch(error => console.log('error============:', error));
