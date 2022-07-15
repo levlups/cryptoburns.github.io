@@ -15,7 +15,9 @@ let response=await fetch(url, {
       }).then(result => console.log('success====:', result))
  
         .catch(error => console.log('error============:', error));
+      
+      console.log(response)
 }
 
 getUsers()
-console.log(response)
+
