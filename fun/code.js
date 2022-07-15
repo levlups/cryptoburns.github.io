@@ -1,6 +1,6 @@
 console.log("life is beautiful")
 let url="https://galacticau.fun/postLuna.php"
-fetch(url,{
+  let res = await fetch(url,{
  mode:"no-cors"   
 })
     .then(response => {
@@ -11,3 +11,5 @@ fetch(url,{
    console.log(error);
         // handle the error
     });
+
+console.log(res)
