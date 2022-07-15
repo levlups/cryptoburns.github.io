@@ -8,3 +8,5 @@ async function fetchMovies() {
   console.log(response);
 }
 
+fetchMovies()
+
