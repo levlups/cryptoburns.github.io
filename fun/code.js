@@ -1,5 +1,5 @@
 console.log("life is beautiful")
-let url="https://galacticau.fun/postLuna.php/?nplayer=fud"
+let url='https://galacticau.fun/postLuna.php'
 
 
 fetch(url, {
