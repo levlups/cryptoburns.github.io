@@ -1,5 +1,8 @@
 console.log("life is beautiful")
 let url="https://galacticau.fun/postLuna.php"
+
+
+async function getUsers() {
   let res = await fetch(url,{
  mode:"no-cors"   
 })
@@ -13,3 +16,6 @@ let url="https://galacticau.fun/postLuna.php"
     });
 
 console.log(res)
+}
+
+getUsers()
