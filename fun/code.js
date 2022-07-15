@@ -5,7 +5,7 @@ let url="https://galacticau.fun/postLuna.php"
 async function getUsers() {
   let res = await fetch(url,{
   method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
+    mode: 'no-cors', // no-cors, *cors, same-origin
     cache: 'no-cache'
 })
     .then(response => {
