@@ -3,7 +3,7 @@ console.log("life is beautiful")
 
 
 function reqListener () {
-  console.log(JSON.parse(this.responseText).hash);
+  console.log(JSON.parse(this.responseText));
 }
 
 var oReq = new XMLHttpRequest();
