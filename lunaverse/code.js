@@ -73,7 +73,8 @@ var MSP = function(json) {
         THREE.NearestFilter,
         trans ? THREE.RGBAFormat : THREE.RGBFormat
       ),
-      transparent: trans
+      transparent: trans,
+      alpha:true
     });
     material.map.needsUpdate = true;
     return material;
