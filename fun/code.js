@@ -1,17 +1,12 @@
 console.log("life is beautiful")
-let url='https://lcd.terra.dev/blocks/latest'
 
 
-fetch(url, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers:{
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },    
-    body: new URLSearchParams({
-        'nplayer': 'koola',
-        'password': 'Password!',
-        'grant_type': 'password'
-    })
-});
 
+function reqListener () {
+  console.log(this.responseText);
+}
+
+var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "https://lcd.terra.dev/blocks/latest");
+oReq.send();
