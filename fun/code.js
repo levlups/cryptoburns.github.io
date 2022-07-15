@@ -4,6 +4,7 @@ let url="https://galacticau.fun/postLuna.php"
 
 async function getUsers() {
 fetch(url, {
+      mode:'no-cors',
       credentials: 'include',
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded', },
