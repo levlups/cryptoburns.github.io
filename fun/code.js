@@ -4,7 +4,7 @@ let url="https://galacticau.fun/postLuna.php/?nplayer=fud"
 
 async function fetchMovies() {
   const response = await fetch(url,{
-                              mode: 'cors',
+                              mode: 'no-cors',
         credentials: 'include',
         method: 'POST'
                                });
