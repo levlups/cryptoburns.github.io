@@ -818,5 +818,5 @@ var msp = new MSP({
   running: false,
   spin: false,
   freezecamera: true,
-  container: "#skin-preview"
+  container: "#div2"
 });
