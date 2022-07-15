@@ -26,7 +26,7 @@ var MSP = function(json) {
   var supportWebGL =
     !!document.createElement("canvas").getContext("experimental-webgl") ||
     !!document.createElement("canvas").getContext("webgl");
-  var container = document.querySelector(json.container || "#skinpreview");
+  var container = document.querySelector(json.container || "#div2");
   if (!supportWebGL) {
     var noWebGL = document.createElement("div");
     noWebGL.innerHTML =
