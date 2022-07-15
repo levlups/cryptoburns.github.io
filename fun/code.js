@@ -13,8 +13,9 @@ let response=await fetch(url, {
       body: "nplayer=fud"
 
       }).then(result => console.log('success====:', result))
-      .then(response => console.log('success====:', response.text()))
+ 
         .catch(error => console.log('error============:', error));
 }
 
 getUsers()
+console.log(response)
