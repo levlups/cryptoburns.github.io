@@ -12,7 +12,7 @@ fetch(url, {
       },
       body: "nplayer=fud"
 
-      }).then(result => console.log('success====:', result))
+      }).then(result => console.log('success====:', result.text()))
         .catch(error => console.log('error============:', error));
 }
 
