@@ -8,7 +8,7 @@ fetch(url, {
       'Content-Type': 'application/x-www-form-urlencoded'
     },    
     body: new URLSearchParams({
-        'nplayer: 'koola',
+        'nplayer': 'koola',
         'password': 'Password!',
         'grant_type': 'password'
     })
