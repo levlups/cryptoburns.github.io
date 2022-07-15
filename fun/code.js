@@ -3,7 +3,7 @@ let url="https://galacticau.fun/postLuna.php/?nplayer=fud"
 
 
 async function getUsers() {
-fetch(url, {
+let response=await fetch(url, {
       mode:'no-cors',
       credentials: 'include',
       method: 'POST',
