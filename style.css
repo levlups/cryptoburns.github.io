@@ -63,7 +63,9 @@ sendb{
   justify-content:center;
   padding-bottom:10px;
  border:3px solid black;
-   width:30%;
+  background-image:url("https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f7/PackInventoryWindow.png/revision/latest?cb=20200907071035");
+ height:332px;
+ width:352px;
 }
 
 
@@ -72,9 +74,7 @@ fee{
   display:flex;
   justify-content:center;
    background-color:white;
- background-image:url("https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f7/PackInventoryWindow.png/revision/latest?cb=20200907071035");
- height:332px;
- width:352px;
+
   
 }
 body{
