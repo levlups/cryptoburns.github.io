@@ -119,5 +119,7 @@ li span {
 
 #countdown{
   text-align:center;
+   font-weight: bold;
+  font-size: 34px;
   
   }
