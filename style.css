@@ -59,10 +59,14 @@ lunad{
 }
 
 sendb{
-  display:flex;
+  /*display:flex;
   justify-content:center;
-  padding-bottom:10px;
+  padding-bottom:10px;*/
  border:3px solid black;
+ 
+   width:30%;
+heigth:10%;
+  margin:auto;
  /* background-image:url("https://wiki.micdoodle8.com/images/2/29/Player_Inventory_Tab.png");*/
 /* height:332px;
  width:352px;*/
