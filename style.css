@@ -27,6 +27,9 @@ imagios{
    display:flex;
   justify-content:center;
  border:3px solid black;
+   width:30%;
+
+  margin:auto;
 
 }
 
