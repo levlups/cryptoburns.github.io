@@ -9,6 +9,8 @@ prize{
   border-width:thin;
     background-color:orange;
  border-radius:25%;
+ /*text info  */
+  font-weight: bold;
 }
 
 imagio{
