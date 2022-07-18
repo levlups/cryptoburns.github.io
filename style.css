@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@levlups 
+levlups
+/
+levlups.github.io
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+levlups.github.io/style.css
+@levlups
+levlups Update style.css
+Latest commit db8bace 2 hours ago
+ History
+ 1 contributor
+125 lines (101 sloc)  1.6 KB
+
 div{
  
 }
@@ -62,14 +91,6 @@ sendb{
   display:flex;
   justify-content:center;
   padding-bottom:10px;
-
- 
-   /*width:30%;
-height:10%;
-  margin:auto;
- /* background-image:url("https://wiki.micdoodle8.com/images/2/29/Player_Inventory_Tab.png");*/
-/* height:332px;
- width:352px;*/
 }
 
 
@@ -78,7 +99,6 @@ fee{
   display:flex;
   justify-content:center;
    background-color:white;
-
   
 }
 body{
@@ -132,3 +152,17 @@ li span {
   font-size: 34px;
   
   }
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
