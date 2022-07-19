@@ -11,8 +11,8 @@ color:gold;
 }
 #banner{
 
-
- text-align: center;
+display: flex;
+  justify-content: center;
 }
 
 #tfee{
