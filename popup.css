@@ -2,6 +2,7 @@
 .popup {
   /*position: relative;
   display: inline-block;*/
+  text-align:center;
   cursor: pointer;
   
   display:flex;
