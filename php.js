@@ -44,3 +44,11 @@ xhr.send("nplayer=Eddie66667755555&nlune=starboy&ndate="+today.toLocaleDateStrin
           
           
   document.getElementById("btn").onclick = function(){lol();};
+
+
+
+function SelfCopy(copyText)
+  {
+      navigator.clipboard.writeText(copyText);
+      alert("You just copied this: (" + copyText + ").");
+  }
