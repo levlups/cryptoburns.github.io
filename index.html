@@ -20,9 +20,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
           <script
 
-  src="https://unpkg.com/@terra-money/terra.js/dist/bundle.js"
-                  console.log(Terra);
-></script>
+  src="https://unpkg.com/@terra-money/terra.js/dist/bundle.js"></script>
+          <script>
+          const terra = new LCDClient({
+  URL: 'https://bombay-lcd.terra.dev',
+  chainID: 'bombay-12',
+});
+            console.log(Terra);
+          </script>
         </header>
         <body>
           <prize>
