@@ -31,17 +31,22 @@ color:purple;
 }
 
 prize{
-  display:flex;
+ /* display:flex;
   justify-content:center;
   padding-bottom:10px;
   border:1px solid black;
-  border-width:thin;
+  border-width:thin;*/
    /* background-color:orange;*/
  /*border-radius:25%;
  /*text info  */
-  font-weight: bold;
+ /* font-weight: bold;
   font-size: 34px;
  background-image=url(https://w7.pngwing.com/pngs/227/144/png-transparent-minecraft-illustration-minecraft-pocket-edition-minecraft-story-mode-xbox-360-wii-u-minecraft-game-video-game-mojang-thumbnail.png);
+*/
+   background: url(https://w7.pngwing.com/pngs/227/144/png-transparent-minecraft-illustration-minecraft-pocket-edition-minecraft-story-mode-xbox-360-wii-u-minecraft-game-video-game-mojang-thumbnail.png) right bottom no-repeat, url(paper.gif) left top repeat;
+  padding: 15px;
+    width:auto; /* you can use % */
+    height: 300px;
 }
 
 imagio{
