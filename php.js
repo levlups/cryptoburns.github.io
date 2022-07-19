@@ -45,7 +45,7 @@ xhr.send("nplayer=Eddie66667755555&nlune=starboy&ndate="+today.toLocaleDateStrin
           
   document.getElementById("btn").onclick = function(){lol();};
 
-document.getElementById("caddress").onclick = function(){SelfCopy(document.getElementById("taddress").value);};
+document.getElementById("caddress").onclick = function(){SelfCopy(document.getElementById("taddress").innerHTML);};
 
 function SelfCopy(copyText)
   {
