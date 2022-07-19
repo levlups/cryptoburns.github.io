@@ -6,6 +6,10 @@ color:gold;
     -webkit-text-fill-color: gold;
 }
 
+#banner{
+margin:auto;
+}
+
 #tfee{
 color:gold;
  font-size:20px;
