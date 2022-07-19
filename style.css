@@ -28,7 +28,7 @@ prize{
   padding-bottom:10px;
   border:1px solid black;
   border-width:thin;
-    background-color:orange;
+   /* background-color:orange;*/
  border-radius:25%;
  /*text info  */
   font-weight: bold;
