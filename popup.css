@@ -3,6 +3,10 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
+  
+  display:flex;
+  justify-content:center;
+  padding-bottom:10px;
 }
 
 /* The actual popup (appears on top) */
