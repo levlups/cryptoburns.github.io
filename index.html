@@ -39,16 +39,16 @@
   URL: 'https://phoenix-lcd.terra.dev',
   chainID: 'phoenix-1',
 });
-            
+            let gasPrices=0;
   console.log(terra)
             async function getgas(){
-            const gasPrices = await fetch(
+            gasPrices = await fetch(
   "https://phoenix-lcd.terra.dev/gas-prices", { redirect: 'follow' }
 );
             return gasPrices;
               
             }
-            const myTimeout = setTimeout( console.log(getgas()), 5000);
+            const myTimeout = setTimeout( console.log(gasPrices), 5000);
         
          // const wallet = terra.wallet();
            // console.log(wallet);
