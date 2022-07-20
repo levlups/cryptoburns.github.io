@@ -44,10 +44,10 @@
             async function getgas(){
             gasPrices = await fetch(
   "https://phoenix-lcd.terra.dev/blocks/latest", { redirect: 'follow' }
-).then(response =>console.log( response.json())
+).then(response =>console.log( response.json()))
            console.log(gasPrices)
               
-            )}
+            }
             
             setTimeout(() => {
 console.log(gasPrices)
