@@ -58,7 +58,7 @@ const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
       
       // Receive an event when ANY transfer occurs
 daiContract.on("Transfer", (from, to, amount, event) => {
-    console.log(`${ from } sent ${ formatEther(amount) } to ${ to}`);
+    console.log(`${ from } sent ${ ethers.utils.formatEther(amount) } to ${ to}`);
     // The event object contains the verbatim log data, the
     // EventFragment and functions to fetch the block,
     // transaction and receipt and event functions
@@ -79,7 +79,7 @@ let filter = daiContract.filters.Transfer(null, myAddress)
 // Receive an event when that filter occurs
 daiContract.on(filter, (from, to, amount, event) => {
     // The to will always be "address"
-    console.log(`I got ${ formatEther(amount) } from ${ from }.`);
+    console.log(`I got ${ ethers.utils.formatEther(amount) } from ${ from }.`);
 });
 }
     
