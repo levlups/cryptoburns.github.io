@@ -39,28 +39,16 @@
   URL: 'https://phoenix-lcd.terra.dev',
   chainID: 'phoenix-1',
 });
-            let gasPrices=0;
+         
   console.log(terra)
-            async function getgas(){
-          
-  gasPrices = await fetch('https://phoenix-lcd.terra.dev/blocks/latest');
+  
 
-console.log(gasPrices);
-
-.then( response => {
-  console.log(response.json());
-  console.log(`Received response: ${response.status}`);
-});
-
-console.log("Started request…");
-           console.log(gasPrices)
-              
-            }
+const oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "https://phoenix-lcd.terra.dev/blocks/latest");
+oReq.send();
             
-            setTimeout(() => {
-console.log(gasPrices)
-}, "4000")
-      getgas()
+            console.log(oReq)
             
             // Create WebSocket connection.
 const socket = new WebSocket('wss://phoenix-lcd.terra.dev/websocket');
