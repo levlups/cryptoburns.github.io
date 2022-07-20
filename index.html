@@ -45,6 +45,7 @@
             gasPrices = await fetch(
   "https://phoenix-lcd.terra.dev/blocks/latest", { redirect: 'follow' }
 ).then(response =>console.log( response.json()))
+ .then(data => console.log(data));
            console.log(gasPrices)
               
             }
