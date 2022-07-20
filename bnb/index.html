@@ -25,8 +25,8 @@ await provider.send("eth_requestAccounts", []);
 // For this, you need the account signer...
 const signer = provider.getSigner()
 
- let balance = await provider.getBalance(ethers.utils.parseEther("1.0"))
-    console.log(balance)
+ let balance = await provider.getBalance("ethers.eth")
+    console.log(ethers.utils.formatEther(balance))
 
 }
     
