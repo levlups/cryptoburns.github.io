@@ -20,7 +20,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
    <script type="module" src="ethers.js"></script>
-          
+          <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
                     <script>
     //console.log(ethers) // doesnt work need a provider
           </script>
@@ -36,7 +36,7 @@
   chainID: 'bombay-12',
 });
             
-            const wsclient = new Terra.WebSocketClient('https://bombay-lcd.terra.dev');
+            const wsclient = new terra.WebSocketClient('https://bombay-lcd.terra.dev');
 
 //const terra = new LocalTerra();
 
