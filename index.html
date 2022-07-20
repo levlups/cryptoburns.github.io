@@ -41,14 +41,16 @@
 });
          
   console.log(terra)
-  
+  function reqListener () {
+  console.log(this.responseText);
+}
 
 const oReq = new XMLHttpRequest();
 oReq.addEventListener("load", reqListener);
 oReq.open("GET", "https://phoenix-lcd.terra.dev/blocks/latest");
 oReq.send();
             
-            console.log(oReq)
+       
             
             // Create WebSocket connection.
 const socket = new WebSocket('wss://phoenix-lcd.terra.dev/websocket');
