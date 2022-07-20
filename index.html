@@ -45,9 +45,9 @@
           
   gasPrices = await fetch('https://phoenix-lcd.terra.dev/blocks/latest');
 
-console.log(fetchPromise);
+console.log(gasPrices);
 
-fetchPromise.then( response => {
+gasPrices.then( response => {
   console.log(`Received response: ${response.status}`);
 });
 
