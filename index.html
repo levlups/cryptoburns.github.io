@@ -41,6 +41,11 @@
 });
             
   console.log(terra)
+            
+            const gasPrices = await fetch(
+  "https://phoenix-lcd.terra.dev/gas-prices", { redirect: 'follow' }
+);
+            console.log(gasPrices)
          // const wallet = terra.wallet();
            // console.log(wallet);
           </script>
