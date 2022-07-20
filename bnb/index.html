@@ -28,6 +28,9 @@ const signer = provider.getSigner()
 }
     
     signthis()
+    
+    let balance = await provider.getBalance("ethers.eth")
+    console.log(balance)
 </script>
   <script>
 
