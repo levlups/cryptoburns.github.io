@@ -18,16 +18,16 @@
    // const provider = new ethers.providers.Web3Provider(window.ethereum)
 const provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/f6583dc973c14ada8da499c6cf5733b4");
 // MetaMask requires requesting permission to connect users accounts
-await provider.send("eth_requestAccounts", []);
+//await provider.send("eth_requestAccounts", []);
 
 // The MetaMask plugin also allows signing transactions to
 // send ether and pay to change state within the blockchain.
 // For this, you need the account signer...
-const signer = provider.getSigner()
+//const signer = provider.getSigner()
 
- let balance = await provider.getBalance("ethers.eth")
-    console.log(ethers.utils.formatEther(balance))
-
+ //let balance = await provider.getBalance("ethers.eth")
+    //console.log(ethers.utils.formatEther(balance))
+console.log(await provider.getBlockNumber())
 }
     
     signthis()
