@@ -35,6 +35,28 @@
   URL: 'https://bombay-lcd.terra.dev',
   chainID: 'bombay-12',
 });
+            
+            const wsclient = new WebSocketClient('https://bombay-lcd.terra.dev');
+
+const terra = new LocalTerra();
+
+let count = 0;
+wsclient.subscribe('NewBlock', {}, (_) => {
+  console.log(count);
+  count += 1;
+
+  if (count === 3) {
+    wsclient.destroy();
+  }
+});
+
+// send tracker
+wsclient.subscribe('Tx', { 'message.action': '/cosmos.bank.v1beta1.MsgSend' }, data => {
+  console.log('Send occured!');
+  console.log(data.value);
+});
+
+wsclient.start();
          // const wallet = terra.wallet();
            // console.log(wallet);
           </script>
