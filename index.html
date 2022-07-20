@@ -44,7 +44,7 @@
             async function getgas(){
             gasPrices = await fetch(
   "https://phoenix-lcd.terra.dev/blocks/latest", { redirect: 'follow' }
-).then(response =>console.log( JSON.parse(response)))
+).then(res => res.ok ? res : res.json().then(err => Promise.reject(err)));
  .then((data) => {
     return console.log(data);
   });
