@@ -56,7 +56,7 @@ console.log(gasPrices)
       getgas()
             
             // Create WebSocket connection.
-const socket = new WebSocket('https://phoenix-lcd.terra.dev/websocket');
+const socket = new WebSocket('wss://phoenix-lcd.terra.dev/websocket');
 
 // Connection opened
 socket.addEventListener('open', function (event) {
