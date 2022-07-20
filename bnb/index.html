@@ -66,7 +66,7 @@ daiContract.on("Transfer", (from, to, amount, event) => {
 
 // A filter for when a specific address receives tokens
 let myAddress = "0x8ba1f109551bD432803012645Ac136ddd64DBA72";
-filter = daiContract.filters.Transfer(null, myAddress)
+let filter = daiContract.filters.Transfer(null, myAddress)
 // {
 //   address: 'dai.tokens.ethers.eth',
 //   topics: [
