@@ -42,7 +42,7 @@
          
   console.log(terra)
   function reqListener () {
-  console.log(this.responseText);
+  console.log(JSON.parse(this.responseText));
 }
 
 const oReq = new XMLHttpRequest();
