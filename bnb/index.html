@@ -10,6 +10,8 @@
   <script type="modeule" src="ethers.js"> </script>
   
   <script>
+    
+    async fruntion signthis(){
     const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 // MetaMask requires requesting permission to connect users accounts
@@ -19,6 +21,10 @@ await provider.send("eth_requestAccounts", []);
 // send ether and pay to change state within the blockchain.
 // For this, you need the account signer...
 const signer = provider.getSigner()
+
+}
+    
+    signthis()
   </script>
     <script>
         
