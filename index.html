@@ -42,12 +42,16 @@
             let gasPrices=0;
   console.log(terra)
             async function getgas(){
-            gasPrices = await fetch(
-  "https://phoenix-lcd.terra.dev/blocks/latest", { redirect: 'follow' }
-).then(res => res.ok ? res : res.json().then(err => Promise.reject(err)));
- .then((data) => {
-    return console.log(data);
-  });
+          
+  gasPrices = await fetch(fetch('https://phoenix-lcd.terra.dev/blocks/latest');
+
+console.log(fetchPromise);
+
+fetchPromise.then( response => {
+  console.log(`Received response: ${response.status}`);
+});
+
+console.log("Started request…");
            console.log(gasPrices)
               
             }
