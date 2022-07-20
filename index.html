@@ -48,6 +48,7 @@
 console.log(gasPrices);
 
 gasPrices.then( response => {
+  console.log(response.json());
   console.log(`Received response: ${response.status}`);
 });
 
