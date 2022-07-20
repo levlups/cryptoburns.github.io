@@ -45,11 +45,11 @@
             const gasPrices = await fetch(
   "https://phoenix-lcd.terra.dev/gas-prices", { redirect: 'follow' }
 );
-            console.log(gasPrices)
+            return gasPrices;
               
             }
             
-         getgas()
+         console.log(getgas())
          // const wallet = terra.wallet();
            // console.log(wallet);
           </script>
