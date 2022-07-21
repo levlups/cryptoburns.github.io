@@ -38,6 +38,8 @@ const daiAbi = [
   // Some details about the token
   "function name() view returns (string)",
   "function symbol() view returns (string)",
+  
+   "function owner() view returns (string)",
 
   // Get the account balance
   "function balanceOf(address) view returns (uint)",
@@ -55,6 +57,7 @@ const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
       console.log(await daiContract.name())
       console.log(daiContract)
      console.log(  await daiContract.symbol())
+      console.log(  await daiContract.owner())
       
       // Receive an event when ANY transfer occurs
 daiContract.on("Transfer", (from, to, amount, event) => {
