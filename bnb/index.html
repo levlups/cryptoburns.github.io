@@ -57,7 +57,7 @@ const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
       console.log(await daiContract.name())
       console.log(daiContract)
      console.log(  await daiContract.symbol())
-      console.log(  await daiContract.totalSupply())
+      console.log(  await Number(daiContract.totalSupply()._hex))
       
       // Receive an event when ANY transfer occurs
 daiContract.on("Transfer", (from, to, amount, event) => {
