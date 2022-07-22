@@ -87,7 +87,12 @@ daiContract.on(filter, (from, to, amount, event) => {
 }
     
     signthis()
-    
+    let text = "Hello World!"
+
+let bytes32 = ethers.utils.formatBytes32String(text)
+// "0x48656c6c6f20576f726c64210000000000000000000000000000000000000000"
+
+let originalText = ethers.utils.parseBytes32String(bytes32)
    
 </script>
   <script>
