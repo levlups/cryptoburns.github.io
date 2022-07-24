@@ -16,7 +16,9 @@
         
     async function signthis(){
    // const provider = new ethers.providers.Web3Provider(window.ethereum)
-const provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/f6583dc973c14ada8da499c6cf5733b4");
+//const provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/f6583dc973c14ada8da499c6cf5733b4");
+      
+      const provider = new ethers.providers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
 // MetaMask requires requesting permission to connect users accounts
 //await provider.send("eth_requestAccounts", []);
 
