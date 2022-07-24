@@ -62,12 +62,12 @@ const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
       console.log(  await parseInt(daiContract.totalSupply()._hex))
       
       // Receive an event when ANY transfer occurs
-/*daiContract.on("Transfer", (from, to, amount, event) => {
+daiContract.on("Transfer", (from, to, amount, event) => {
     console.log(`${ from } sent ${ ethers.utils.formatEther(amount) } to ${ to}`);
     // The event object contains the verbatim log data, the
     // EventFragment and functions to fetch the block,
     // transaction and receipt and event functions
-});*/
+});
 
 // A filter for when a specific address receives tokens
 let myAddress = "0x186FBF50357E90A8B9cb85316393313e3bbab08b";
