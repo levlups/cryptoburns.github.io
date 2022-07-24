@@ -32,7 +32,7 @@
 console.log(await provider.getBlockNumber())
       
       // You can also use an ENS name for the contract address
-const daiAddress = "0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE";
+const daiAddress = "0x236db466f93437019A202f549f08F3a332EbF47a";
 
 // The ERC-20 Contract ABI, which is a common contract interface
 // for tokens (this is the Human-Readable ABI format)
@@ -70,7 +70,7 @@ const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
 });*/
 
 // A filter for when a specific address receives tokens
-let myAddress = "0x8ba1f109551bD432803012645Ac136ddd64DBA72";
+let myAddress = "0x186FBF50357E90A8B9cb85316393313e3bbab08b";
 let filter = daiContract.filters.Transfer(null, myAddress)
 // {
 //   address: 'dai.tokens.ethers.eth',
