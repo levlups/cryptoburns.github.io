@@ -39,7 +39,21 @@
 const myElementIn = <input type="text" />;
 const myElement = <h1>React is {5 + 5 } {console.log("looool")}times better with JSX</h1>;
 const root =    ReactDOM.createRoot(document.getElementById('root'));
-root.render(myElementIn );
+
+const x = 5;
+let text = "Goodbye";
+if (x < 10) {
+  text = "Hello";
+}
+
+const myElementJSX = <h1>{text}</h1>;
+
+
+
+root.render(myElementJSX);
+
+
+
 //ReactDOM.render(myelement, document.getElementById('root'))
     </script>
     
