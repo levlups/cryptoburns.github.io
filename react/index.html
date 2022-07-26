@@ -8,6 +8,10 @@
   <body>
 <div id="tool"></div>
     <div id="root"></div>
+    
+    <script type="module">
+      import Truck from './Car.js';
+    </script>
 
   <script type="text/babel">
      /* function Hello() {
@@ -62,7 +66,7 @@ function Garage() {
 }
 
 
-import Truck from './Car.js';
+
 
 
 root.render(<Truck />);
@@ -75,6 +79,7 @@ root.render(<Truck />);
     <div> Im the cooles kid on the block! </div>
    <script type="module">
     import { name, age } from "./person.js";
+  
      console.log(name);
      console.log(age);
     
