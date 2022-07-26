@@ -1,5 +1,5 @@
-const Car=function caroo() {
+function Car() {
   return "<h2> Hi, I am a Truckerrrr! </h2>";
 }
 
-export { Car }
+export default Car
