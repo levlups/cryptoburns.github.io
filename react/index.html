@@ -48,12 +48,20 @@ if (x < 10) {
 
 const myElementJSX = <h1>{text}</h1>;
 
-
-function Caro(){
-return <h1> Oh thats cool!</h1>
-
+function Caro() {
+  return <h2>I am a Car!</h2>;
 }
-root.render(<Caro />);
+
+function Garage() {
+  return (
+    <>
+      <h1>Who lives in my Garage?</h1>
+      <Caro />
+    </>
+  );
+}
+
+root.render(<Garage />);
 
 
 
