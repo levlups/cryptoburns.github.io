@@ -132,7 +132,17 @@ daiContract.on(filter, (from, to, amount, event) => {
 });
 }
     
+    
+    
+    
     signthis()
+    
+    
+    console.log("liseners are ..."+daiContract.listeners( "Transfer" ))
+    
+    
+    
+    
     let text = "pic"
 
 let bytes32 = ethers.utils.formatBytes32String(text)
