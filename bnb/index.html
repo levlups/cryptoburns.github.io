@@ -19,6 +19,17 @@
 //const provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/f6583dc973c14ada8da499c6cf5733b4");
       
       const provider = new ethers.providers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
+      
+      
+         provider.on("network", (newNetwork, oldNetwork) => {
+        // When a Provider makes its initial connection, it emits a "network"
+        // event with a null oldNetwork along with the newNetwork. So, if the
+        // oldNetwork exists, it represents a changing network
+        if (oldNetwork) {
+            window.location.reload();
+        }
+    });
+}
 // MetaMask requires requesting permission to connect users accounts
 //await provider.send("eth_requestAccounts", []);
 
