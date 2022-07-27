@@ -130,6 +130,11 @@ daiContract.on(filter, (from, to, amount, event) => {
     // The to will always be "address"
     console.log(`I got ${ ethers.utils.formatEther(amount) } from ${ from }.`);
 });
+      
+      
+      
+          console.log("liseners are ..."+daiContract.listeners( "Transfer" ))
+    
 }
     
     
@@ -138,8 +143,7 @@ daiContract.on(filter, (from, to, amount, event) => {
     signthis()
     
     
-    console.log("liseners are ..."+daiContract.listeners( "Transfer" ))
-    
+
     
     
     
