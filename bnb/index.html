@@ -53,7 +53,7 @@ const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
       
       // The ERC-20 Contract ABI, which is a common contract interface
 // for tokens (this is the Human-Readable ABI format)
-const daiAbi =daiContract.interface/* [
+const daiAbi = [
   // Some details about the token
   "function name() view returns (string)",
   "function symbol() view returns (string)",
@@ -68,7 +68,10 @@ const daiAbi =daiContract.interface/* [
 
   // An event triggered whenever anyone transfers to someone else
   "event Transfer(address indexed from, address indexed to, uint amount)"
-];*/
+];
+      
+      
+      console.log(daiContract.interface)
       
       
       
