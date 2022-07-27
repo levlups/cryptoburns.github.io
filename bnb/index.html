@@ -47,11 +47,8 @@ console.log(await provider.getBlockNumber())
 const daiAddress = "0x236db466f93437019A202f549f08F3a332EbF47a";
 
 
-
-// The Contract object
-const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
       
-      // The ERC-20 Contract ABI, which is a common contract interface
+            // The ERC-20 Contract ABI, which is a common contract interface
 // for tokens (this is the Human-Readable ABI format)
 const daiAbi = [
   // Some details about the token
@@ -70,6 +67,15 @@ const daiAbi = [
   "event Transfer(address indexed from, address indexed to, uint amount)"
 ];
       
+      
+      
+      
+      
+
+// The Contract object
+const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+      
+
       
       console.log(daiContract.interface)
       
