@@ -67,7 +67,7 @@ const daiAbi = [
 
 // The Contract object
 const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
-      console.log(await daiContract.address())
+      console.log(await daiContract.address)
       console.log(await daiContract.name())
       console.log(daiContract)
      console.log(  await daiContract.symbol())
