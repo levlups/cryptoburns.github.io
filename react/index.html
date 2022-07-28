@@ -1,60 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-   
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
   </head>
   <body>
 
-    <div id="root"></div>
-    
- 
+    <h2>Add React in One Minute</h2>
+    <p>This page demonstrates using React with no build tooling.</p>
+    <p>React is loaded as a script tag.</p>
 
-  <script type="text/label">
-     /* function Hello() {
-        return <h1>Hello World!</h1>;
-      }
+    <p>
+      This is the first comment.
+      <!-- We will put our React component inside this div. -->
+      <div class="like_button_container" data-commentid="1"></div>
+    </p>
 
-      ReactDOM.render(<Hello />, document.getElementById('root'))*/
-      
-      const myelement = (
-   
-      
-  <table>
-     <tbody>
-    <tr>
-      <th>Nameyyy</th>
-    </tr>
-    <tr>
-      <td>Johnyyy</td>
-    </tr>
-    <tr>
-      <td>Elsayyy</td>
-    </tr>
-       </tbody>
-  </table>
-   
-    
-);
+    <p>
+      This is the second comment.
+      <!-- We will put our React component inside this div. -->
+      <div class="like_button_container" data-commentid="2"></div>
+    </p>
 
-const myElementIn = <input type="text" />;
-const myElement = <h1>React is {5 + 5 } {console.log("looool")}times better with JSX</h1>;
-const root =    ReactDOM.createRoot(document.getElementById('root'));
+    <p>
+      This is the third comment.
+      <!-- We will put our React component inside this div. -->
+      <div class="like_button_container" data-commentid="3"></div>
+    </p>
 
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
-
-import Truck from './cars.js';
-root.render(myelement);
-
-
-
-
-    </script>
-    
-  
-  
+    <!-- Load our React component. -->
+    <script src="like_button.js"></script>
 
   </body>
 </html>
