@@ -43,28 +43,6 @@ const myElementIn = <input type="text" />;
 const myElement = <h1>React is {5 + 5 } {console.log("looool")}times better with JSX</h1>;
 const root =    ReactDOM.createRoot(document.getElementById('root'));
 
-const x = 5;
-let text = "Goodbye";
-if (x < 10) {
-  text = "Hello";
-}
-
-const myElementJSX = <h1>{text}</h1>;
-
-function Caro() {
-  return <h2>I am a Car!</h2>;
-}
-
-function Garage() {
-  return (
-    <>
-      <h1>Who lives in my Garage?</h1>
-      <Caro />
-    </>
-  );
-}
-
-
 
 
 import Truck from './cars.js';
@@ -72,33 +50,11 @@ root.render(myElement);
 
 
 
-//ReactDOM.render(myelement, document.getElementById('root'))
+
     </script>
     
-    <div> Im the cooles kid on the block! </div>
-   <script type="module">
-    import { name, age } from "./person.js";
   
-     console.log(name);
-     console.log(age);
-    
-     document.getElementById("tool").innerHTML=name;
-    </script>
-    
-    <script>
-class Car {
-  constructor(name) {
-    this.brand = name;
-  }
-
-  present() {
-    return 'I have a ' + this.brand;
-  }
-}
-
-const mycar = new Car("Ford");
-document.write(mycar.present());
-</script>
+  
 
   </body>
 </html>
