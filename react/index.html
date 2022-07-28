@@ -8,17 +8,17 @@
   <body>
 
     <div id="root"></div>
-   <script type="module">
-       import Car from "./cars";
-    </script>
-    <script type="text/label">
-    
   
-  const root = ReactDOM.createRoot(
+    <script type="text/label">
+function Car(){
+  return (
+  <h1>Hello, worldyyy!</h1>
+  )
+}
+const root = ReactDOM.createRoot(
   document.getElementById('root')
 );
-//const element = <Car />;
-root.render(Car);
+root.render(<Car/>);
     </script>
 
   </body>
