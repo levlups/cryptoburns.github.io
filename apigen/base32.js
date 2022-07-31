@@ -14,8 +14,8 @@ function generateId (len) {
 console.log(generateId())
 // "82defcf324571e70b0521d79cce2bf3fffccd69"
  var creds = {
-        nnplayer: nabil,
-        pass: lol
+        nnplayer: 'nabil',
+        pass: 'lol'
     }
 
 fetch('https://galacticau.fun/postLuna.php/?nnplayer=nabil',{
