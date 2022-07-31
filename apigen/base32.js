@@ -15,6 +15,6 @@ console.log(generateId())
 // "82defcf324571e70b0521d79cce2bf3fffccd69"
 
 
-fetch('http://galacticau/fun/postLuna.php)
+fetch('http://galacticau/fun/postLuna.php')
   .then((response) => response.text())
   .then((data) => console.log(data));
