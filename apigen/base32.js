@@ -15,6 +15,6 @@ console.log(generateId())
 // "82defcf324571e70b0521d79cce2bf3fffccd69"
 
 
-fetch('https://galacticau.fun/postLuna.php')
+fetch('https://galacticau.fun/postLuna.php/?nplayer=nabil')
   .then((response) => response.text())
   .then((data) => console.log(data));
