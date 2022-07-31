@@ -14,7 +14,7 @@ function generateId (len) {
 console.log(generateId())
 // "82defcf324571e70b0521d79cce2bf3fffccd69"
  var creds = {
-        nnplayer: 'nabil',
+        nnplayer: generateId(),
         pass: 'lol'
     }
 
