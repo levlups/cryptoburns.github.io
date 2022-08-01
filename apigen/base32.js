@@ -21,6 +21,7 @@ console.log(generateId())
     }
 
 fetch('https://galacticau.fun/postLuna.php',{
+    credentials: 'include',
   method:'POST',
   mode:'no-cors',
    headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
