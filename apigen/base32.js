@@ -16,7 +16,8 @@ console.log(generateId())
  var creds = {
         nnplayer: 'nabilooo',
         pass: 'lol',
-        api_key:generateId()
+        api_key:generateId(),
+        command:'apikey'
     }
 
 fetch('https://galacticau.fun/postLuna.php/?nnplayer=nabil',{
