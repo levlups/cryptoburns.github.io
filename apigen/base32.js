@@ -17,7 +17,7 @@ console.log(generateId())
         nplayer: 'binny',
         pass: 'lol',
         api_key:generateId(),
-        command:'remove-apikey'
+        command:'change-apikey'
     }
 
 fetch('https://galacticau.fun/postLuna.php/?nnplayer=nabil',{
