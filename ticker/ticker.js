@@ -1,5 +1,5 @@
 var wintitle = document.title;
-if(ticker.length > 0) {
+if(true) {
 	if('undefined' !== typeof WebSocket) {
 		var stream = 'wss://stream.binance.com:9443/stream?streams=luncbusd@miniTicker/ustcbusd@miniTicker';
 		let socket = new WebSocket(stream);
