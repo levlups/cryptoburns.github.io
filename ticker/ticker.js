@@ -19,7 +19,7 @@ if(true) {
 			let price = json['data']['c'];
 	console.log(price)
 			
-			wintitle=price;
+			document.title= price.toString()
 			if(!prev[id]) {
 				prev[id] = price;
 			}
