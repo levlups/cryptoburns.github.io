@@ -17,7 +17,7 @@ if(true) {
 			}
 	
 			let price = json['data']['c'];
-	
+	console.log(price)
 			if(!prev[id]) {
 				prev[id] = price;
 			}
