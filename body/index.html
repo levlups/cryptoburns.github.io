@@ -1,1 +1,34 @@
-hello
+<hmtl>
+  
+  <style>
+  #minecraft-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 256px;
+    height: 512px;
+  }
+</style>
+  <!-- Include the Three.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r112/three.min.js"></script>
+<!-- Include the Minecraft Skin Viewer library -->
+<script src="https://unpkg.com/minecraft-skin-viewer"></script>
+  
+  <canvas id="minecraft-canvas"></canvas>
+  
+  
+  <script>
+  // Create a new Minecraft Skin Viewer
+const viewer = new MinecraftSkinViewer();
+
+// Set the skin to "blockerups"
+viewer.setSkin("blockerups");
+
+// Set the canvas element to display the character
+viewer.setCanvas(document.getElementById("minecraft-canvas"));
+
+// Render the character
+viewer.render();
+  </script>
+  </html>
