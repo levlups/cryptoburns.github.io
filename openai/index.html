@@ -1,0 +1,27 @@
+<html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script > 
+  $.ajax({
+  type: "POST",
+  url: "https://api.openai.com/v1/engines/davinci/completions",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_API_KEY"
+  },
+  data: JSON.stringify({
+    "prompt": "What is the meaning of life?",
+    "max_tokens": 50
+  }),
+  success: function(response) {
+    console.log(response);
+    var completion = response.choices[0].text;
+    // Use the returned data to update the HTML page
+    $("#output").html(completion);
+  }
+});
+
+  
+  </script>
+  <div id="output"></div>
+  
+</html>
