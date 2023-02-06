@@ -32,17 +32,17 @@ function preload ()
 
 function create ()
 {
-    this.matter.world.setBounds();
+    Matter.world.setBounds();
 
     //  Our two bodies which will be connected by a constraint (aka a Joint or a Spring)
 
-    var ballA = this.matter.add.image(420, 100, 'ball', null, { shape: 'circle', friction: 0.005, restitution: 0.6 });
-    var ballB = this.matter.add.image(400, 200, 'ball', null, { shape: 'circle', friction: 0.005, restitution: 0.6 });
+    var ballA =    Matter.add.image(420, 100, 'ball', null, { shape: 'circle', friction: 0.005, restitution: 0.6 });
+    var ballB =    Matter.add.image(400, 200, 'ball', null, { shape: 'circle', friction: 0.005, restitution: 0.6 });
 
     //  You can create a constraint between the two bodies using a Factory function.
     //  The value 100 is the resting length and 0.2 is the stiffness of the constraint.
 
-    this.matter.add.constraint(ballA, ballB, 100, 0.2);
+       Matter.add.constraint(ballA, ballB, 100, 0.2);
 
     //  To help those of you more used to the Box2D syntax you can use
     //  add.joint or add.spring instead (with the exact same parameters)
@@ -63,7 +63,7 @@ function create ()
 
     // this.matter.world.add(constraint);
 
-    this.matter.add.mouseSpring();
+       Matter.add.mouseSpring();
 }
       
         </script>
