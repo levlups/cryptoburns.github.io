@@ -6,53 +6,80 @@
 <body>
 
     <script>
-    var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 200 }
-            }
-        },
-        scene: {
-            preload: preload,
-            create: create
-        }
-    };
+  
+var config = {
+  type: Phaser.AUTO,
+  width: 800,
+  height: 600,
+   pixelArt: true,
+  scene: [
+    preload: preload,
+    create: create,
+    update: update
+]
+};
 
-    var game = new Phaser.Game(config);
+var game = new Phaser.Game(config);
 
-    function preload ()
-    {
-        this.load.setBaseURL('http://labs.phaser.io');
+function preload() {
+	   
+  this.load.image('player', 'assets/player.png');
+  this.load.image('mob1', 'assets/mob1.png');
+  this.load.image('mob2', 'assets/mob2.png');
+  this.load.image('mob3', 'assets/mob3.png');
+}
 
-        this.load.image('sky', 'assets/skies/space3.png');
-        this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-        this.load.image('red', 'assets/particles/red.png');
-    }
+function create() {
+  player = this.physics.add.sprite(400, 300, 'player');
+  player.setCollideWorldBounds(true);
 
-    function create ()
-    {
-        this.add.image(400, 300, 'sky');
+  mob1 = this.physics.add.sprite(100, 100, 'mob1');
+  mob2 = this.physics.add.sprite(700, 100, 'mob2');
+  mob3 = this.physics.add.sprite(400, 500, 'mob3');
 
-        var particles = this.add.particles('red');
+  this.physics.add.collider(player, mobs);
+}
 
-        var emitter = particles.createEmitter({
-            speed: 100,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD'
-        });
+/// second code 
+function update() {
+  cursors = this.input.keyboard.createCursorKeys();
+  
+  player.setVelocity(0);
+  
+  if (cursors.left.isDown) {
+    player.setVelocityX(-160);
+  } else if (cursors.right.isDown) {
+    player.setVelocityX(160);
+  }
 
-        var logo = this.physics.add.image(400, 100, 'logo');
+  if (cursors.up.isDown) {
+    player.setVelocityY(-160);
+  } else if (cursors.down.isDown) {
+    player.setVelocityY(160);
+  }
+  
+  // Move the mobs towards the player
+  var mobSpeed = 100;
+  mob1.setVelocityY(mobSpeed);
+  mob2.setVelocityX(mobSpeed);
+  mob3.setVelocityY(-mobSpeed);
+}
 
-        logo.setVelocity(100, 200);
-        logo.setBounce(1, 1);
-        logo.setCollideWorldBounds(true);
 
-        emitter.startFollow(logo);
-    }
+////third code
+function update() {
+  
+  
+  // Check if any of the mobs have caught the player
+ /* if (Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), mob1.getBounds()) ||
+      Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), mob2.getBounds()) ||
+      Phaser.Geom.Intersects.RectangleToRectangle(player.getBounds(), mob3.getBounds())) {
+    player.setTint(0xff0000);
+    player.disableBody(true, true);
+	  }*/
+	  
+}
+
     </script>
 
 </body>
