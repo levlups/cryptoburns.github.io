@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Party of the Year!</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		// Set the date of the event
+		var countDownDate = new Date("June 1, 2024 00:00:00").getTime();
+
+		// Update the countdown every second
+		var x = setInterval(function() {
+
+			// Get the current time
+			var now = new Date().getTime();
+
+			// Calculate the time remaining
+			var distance = countDownDate - now;
+
+			// Calculate the days, hours, minutes, and seconds remaining
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			// Display the countdown
+			document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds remaining";
+
+			// If the countdown is over, display a message
+			if (distance < 0) {
+				clearInterval(x);
+				document.getElementById("countdown").innerHTML = "The party has started!";
+			}
+		}, 1000);
+	</script>
+</head>
+<body>
+	<h1>Party of the Year!</h1>
+	<p>Join us in New York City for the biggest and most epic party of 2024! This event will be one for the books, so don't miss out.</p>
+	<h2>Details</h2>
+	<ul>
+		<li>Date: [insert date here]</li>
+		<li>Time: [insert time here]</li>
+		<li>Location: [insert venue name and address here]</li>
+		<li>Entertainment: [insert list of performers and entertainment here]</li>
+		<li>Food and drinks: [insert menu and drink options here]</li>
+	</ul>
+	<p>This is an event you won't want to miss. Bring your friends, family, and colleagues for a night of fun, music, and memories. RSVP now to secure your spot!</p>
+	<p id="countdown"></p>
+	<form action="insert_php_script_here" method="post">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required><br><br>
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required><br><br>
+		<label for="guests">Number of guests:</label>
+		<input type="number" id="guests" name="guests" required><br><br>
+		<input type="submit" value="RSVP">
+	</form>
+</body>
+</html>
