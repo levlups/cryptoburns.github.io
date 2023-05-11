@@ -33,7 +33,7 @@ xhr.send();
       
       
        function lol() {
-console.log("yoooo")
+//console.log("yoooo")
          var xhr = new XMLHttpRequest();
 //xhr.open("GET", "https://api.terrarity.io/wallets/lunaburn", true);
          xhr.open("GET", "https://columbus-fcd.terra.dev/v1/txs?offset=0&limit=10&account=terra19kwnqcjgej5pl3wttuv5xllpvjrjmy79tt2f9l", true);
