@@ -39,7 +39,8 @@ xhr.send();
          
          
       //   xhr.open("GET", "https://columbus-fcd.terra.dev/v1/txs?offset=0&limit=10&account=terra1sk06e3dyexuq4shw77y3dsv480xv42mq73anxu", true);
-          xhr.open("GET", "https://terra-classic-fcd.publicnode.com/v1/txs?offset=0&limit=10&account=terra1sk06e3dyexuq4shw77y3dsv480xv42mq73anxu", true);
+        //  xhr.open("GET", "https://terra-classic-fcd.publicnode.com/v1/txs?offset=0&limit=10&account=terra1sk06e3dyexuq4shw77y3dsv480xv42mq73anxu", true);
+          xhr.open("GET", "https://terra-classic-fcd.publicnode.com/v1/txs?limit=1&account=terra1sk06e3dyexuq4shw77y3dsv480xv42mq73anxu", true);
        //  https://terra-classic-fcd.publicnode.com/v1/txs?account=terra1sk06e3dyexuq4shw77y3dsv480xv42mq73anxu
        //  xhr.open("GET", "https://columbus-fcd.terra.dev/v1/txs?offset=0&limit=10&account=terra19kwnqcjgej5pl3wttuv5xllpvjrjmy79tt2f9l", true);
 //Send the proper header information along with the request
