@@ -40,6 +40,8 @@
           const terra =new Terra.LCDClient({
   URL: 'https://phoenix-lcd.terra.dev',
   chainID: 'phoenix-5',
+              gas_prices:Coins(res.json()),
+    gas_adjustment:"1.4"
 });
             
             console.log(terra.last_request_height)
