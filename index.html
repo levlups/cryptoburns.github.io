@@ -42,9 +42,12 @@
   chainID: 'phoenix-5',
         
 });
- 
+  async function getTotalSupply() {
             var total_supply = await terra.bank.total()
      console.log(total_supply)
+    
+    }
+      getTotalSupply().catch(console.error);
          
   console.log(terra)
   function reqListener () {
