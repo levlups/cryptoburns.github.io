@@ -40,11 +40,13 @@
           const terra =new Terra.LCDClient({
   URL: 'https://phoenix-lcd.terra.dev',
   chainID: 'phoenix-5',
-              gas_prices:Coins(res.json()),
-    gas_adjustment:"1.4"
+        
 });
-            
-            console.log(terra.last_request_height)
+            const mk = new MnemonicKey({
+  mnemonic:
+    'notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius',
+});
+            console.log(mk)
          
   console.log(terra)
   function reqListener () {
