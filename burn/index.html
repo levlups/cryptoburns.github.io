@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction History</title>
+</head>
+<body>
+    <div id="transactionList"></div>
+
+    <script>
+        var targetAddress = 'terra1sk06e3dyexuq4shw77y3dsv480xv42mq73anxu';
+        var token = 'uluna';
+        var offset = 0;
+        var limit = 10;
+
+        function fetchTransactions() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://terra-classic-fcd.publicnode.com/v1/txs?offset=" + offset + "&limit=" + limit + "&account=" + targetAddress, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var transactions = response.txs;
+                    var filteredTransactions = transactions.filter(function(transaction) {
+                        for (var i = 0; i < transaction.tx.value.msg.length; i++) {
+                            var msg = transaction.tx.value.msg[i];
+                            if (msg.type === 'bank/MsgSend' && msg.value.amount[0].denom === token) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    });
+
+                    var transactionList = document.getElementById("transactionList");
+                    filteredTransactions.forEach(function(transaction) {
+                        transaction.tx.value.msg.forEach(function(msg) {
+                            if (msg.type === 'bank/MsgSend' && msg.value.amount[0].denom === token) {
+                                var transactionHash = transaction.txhash;
+                                var fromAddress = msg.value.from_address;
+                                var timestamp = transaction.timestamp;
+                                var memo = JSON.parse(transaction.tx.value.memo.replace(/'/g, '"'));
+                                var memoContent = memo && memo.img ? '<img src="' + memo.img + '">' : transaction.tx.value.memo;
+
+                                var transactionInfo = '<div>' +
+                                    '<p>Transaction Hash: ' + transactionHash + '</p>' +
+                                    '<p>From: ' + fromAddress + '</p>' +
+                                    '<p>Memo: ' + memoContent + '</p>' +
+                                    '<p>Timestamp: ' + timestamp + '</p>' +
+                                    '<hr>' +
+                                    '</div>';
+
+                                transactionList.innerHTML += transactionInfo;
+                            }
+                        });
+                    });
+
+                    // Increase the offset for the next request
+                    offset += limit;
+
+                    // Fetch more transactions if available
+                    if (transactions.length === limit) {
+                        fetchTransactions();
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        fetchTransactions();
+    </script>
+</body>
+</html>
