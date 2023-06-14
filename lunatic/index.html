@@ -43,7 +43,7 @@ terra.tx.txInfo('F5DF8235A17535D7F0127BFF8D523AB904A63AF4FD7992CDDEE1B5462F6EB5F
     console.log('Transaction Hash:', txInfo.txhash);
     console.log('Gas Wanted:', txInfo.gas_wanted);
     console.log('Raw Log:', txInfo.raw_log);
-    console.log('Memo:', txInfo.memo);
+    console.log('Memo:', txInfo.tx.body.memo);
     // Add more fields as needed
   })
   .catch(error => console.error('An error occurred:', error));
