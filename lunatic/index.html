@@ -1,1 +1,89 @@
 
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+       
+       
+        <script
+  crossorigin src="https://unpkg.com/@terra-money/terra.js/dist/bundle.js"></script>
+
+  <script >
+//const mk = new Terra.MnemonicKey();
+   const mk = new Terra.MnemonicKey({
+  mnemonic:
+    ' candle bicycle sunshine mountain whisper harmdoor wish victory dwarf reunion test orchard boring grit camera session ahead drastic dutch wing mushroom tonight soap sleep bunker pelican word boat despair',
+});
+console.log(mk.mnemonic)
+const terra = new Terra.LCDClient({
+  URL: 'https://lcd.terra.dev',
+  chainID: 'columbus-5',
+});
+
+
+const address = 'terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v'; // replace with the address you are interested in
+
+terra.tx.txInfo('F5DF8235A17535D7F0127BFF8D523AB904A63AF4FD7992CDDEE1B5462F6EB5FA')
+  .then(txInfo => {
+    console.log('Transaction Height:', txInfo.height);
+    console.log('Transaction Hash:', txInfo.txhash);
+    console.log('Gas Wanted:', txInfo.gas_wanted);
+    console.log('Raw Log:', txInfo.raw_log);
+    console.log('Memo:', txInfo.memo);
+    // Add more fields as needed
+  })
+  .catch(error => console.error('An error occurred:', error));
+const wallet = terra.wallet(mk);
+console.log(wallet)
+console.log(wallet.lcd.tx)
+console.log(wallet.key.accAddress);
+async function getBalance() {
+  const [balance] = await terra.bank.balance('terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v');
+  console.log(balance.toData()["1"].amount/1000000);
+}
+
+getBalance();
+
+
+
+
+
+const send = new Terra.MsgSend(
+    'terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v',
+  'terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp',
+  {  ukrw: 1000000 }
+);
+
+
+wallet.createAndSignTx({
+    msgs: [send],
+    memo: 'test from terra.js!',
+  })
+  .then(tx => terra.tx.broadcast(tx))
+  .then(result => {
+    console.log(`TX hash: ${result.txhash}`);
+  });
+
+
+
+
+
+
+
+  </script>
+    </body>
+</html>
