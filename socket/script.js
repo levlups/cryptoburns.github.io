@@ -11,6 +11,7 @@ var delay = true;
 
 function onload(){
   socket = io("https://lol.levlups.repl.co");
+  console.log(socket)
   usernameInput = document.getElementById("NameInput");
   chatIDInput = document.getElementById("IDInput");
   messageInput = document.getElementById("ComposedMessage");
