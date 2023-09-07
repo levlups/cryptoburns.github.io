@@ -1,27 +1,36 @@
+<!DOCTYPE html>
 <html>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script > 
-  $.ajax({
-  type: "POST",
-  url: "https://api.openai.com/v1/chat/completions",
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": "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"
-  },
-  data: JSON.stringify({
-    "prompt": "What is the meaning of life?",
-    "max_tokens": 50
-  }),
-  success: function(response) {
-    console.log(response);
-    var completion = response.choices[0].text;
-    // Use the returned data to update the HTML page
-    $("#output").html(completion);
-  }
-});
+<head>
+    <title>OpenAI API Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="output"></div>
 
-  console.log("word");
-  </script>
-  <div id="output"></div>
-  
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "https://api.openai.com/v1/chat/completions",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer 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" // Replace with your actual API key
+                },
+                data: JSON.stringify({
+                    "prompt": "What is the meaning of life?",
+                    "max_tokens": 50
+                }),
+                success: function (response) {
+                    console.log(response);
+                    var completion = response.choices[0].text;
+                    // Use the returned data to update the HTML page
+                    $("#output").html(completion);
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        });
+    </script>
+</body>
 </html>
