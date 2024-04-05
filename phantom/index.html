@@ -7,6 +7,19 @@
     const getProvider = () => {
   if ('phantom' in window) {
     const provider = window.phantom?.solana;
+console.log(provider)
+    if (provider?.isPhantom) {
+      return provider;
+    }
+  }
+
+  window.open('https://phantom.app/', '_blank');
+};
+
+    getProvider();
+    /*const getProvider = () => {
+  if ('phantom' in window) {
+    const provider = window.phantom?.solana;
 
 
     const accounts = provider.requestAccounts();
@@ -20,7 +33,7 @@ console.log(accounts);
   window.open('https://phantom.app/', '_blank');
 };
 
-    getProvider();
+    getProvider();*/
   /*  const walletAddress = 'D896v7YJmMS8hgE6UeRbwxFXzWvSALuzUAFc1YidRSJH';
 const tokenMintAddress = 'DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G';
 const lol = new solanaWeb3();
