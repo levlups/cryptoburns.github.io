@@ -8,6 +8,10 @@
   if ('phantom' in window) {
     const provider = window.phantom?.solana;
 
+
+    const accounts = await provider.requestAccounts();
+console.log(accounts);
+
     if (provider?.isPhantom) {
       return provider;
     }
