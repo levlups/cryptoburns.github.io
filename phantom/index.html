@@ -1,0 +1,31 @@
+<html>
+  <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+  <body>
+    
+  </body>
+  <script>
+    const walletAddress = 'D896v7YJmMS8hgE6UeRbwxFXzWvSALuzUAFc1YidRSJH';
+const tokenMintAddress = 'DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G';
+const lol = new solanaWeb3();
+console.log(lol);
+
+async function getTokenBalance() {
+  // Find token accounts by owner
+  
+  const accounts = await new solanaWeb3.Connection.getParsedTokenAccountsByOwner(
+      new solanaWeb3.PublicKey(walletAddress),
+      { mint: new solanaWeb3.PublicKey(tokenMintAddress) }
+  );
+
+  // Assuming there's at least one account, get the balance
+  if(accounts.value[0]) {
+      const balance = accounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
+      console.log(`Token Balance: ${balance}`);
+  } else {
+      console.log("Token account not found.");
+  }
+}
+
+getTokenBalance().catch(console.error);
+  </script>
+</html>
