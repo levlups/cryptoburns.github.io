@@ -4,7 +4,7 @@
     
   </body>
   <script>
-    async function getProvider = () => {
+   async function getProvider() {
   if ('phantom' in window) {
     const provider = window.phantom?.solana;
    const resp = await window.phantom.solana.connect();
