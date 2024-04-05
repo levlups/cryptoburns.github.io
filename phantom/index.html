@@ -9,7 +9,7 @@
     const provider = window.phantom?.solana;
 
 
-    const accounts = await provider.requestAccounts();
+    const accounts = provider.requestAccounts();
 console.log(accounts);
 
     if (provider?.isPhantom) {
