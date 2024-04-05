@@ -9,6 +9,9 @@
     const provider = window.phantom?.solana;
    const resp = await window.phantom.solana.connect();
             console.log(resp.publicKey.toString());
+   const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
+// After Connecting
+connection.getBalance(provider.publicKey).then(function(value) { console.log(value); })
 const originalString=resp.publicKey.toString()
     let firstSixChars = originalString.slice(0, 6);
     console.log(firstSixChars)
