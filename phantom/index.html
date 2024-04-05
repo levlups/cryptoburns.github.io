@@ -4,10 +4,11 @@
     
   </body>
   <script>
-    const getProvider = () => {
+    async function getProvider = () => {
   if ('phantom' in window) {
     const provider = window.phantom?.solana;
-console.log(provider)
+   const resp = await window.phantom.solana.connect();
+            console.log(resp.publicKey.toString());
     if (provider?.isPhantom) {
       return provider;
     }
