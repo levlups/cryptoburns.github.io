@@ -4,7 +4,18 @@
     
   </body>
   <script>
-    const walletAddress = 'D896v7YJmMS8hgE6UeRbwxFXzWvSALuzUAFc1YidRSJH';
+    const getProvider = () => {
+  if ('phantom' in window) {
+    const provider = window.phantom?.solana;
+
+    if (provider?.isPhantom) {
+      return provider;
+    }
+  }
+
+  window.open('https://phantom.app/', '_blank');
+};
+  /*  const walletAddress = 'D896v7YJmMS8hgE6UeRbwxFXzWvSALuzUAFc1YidRSJH';
 const tokenMintAddress = 'DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G';
 const lol = new solanaWeb3();
 console.log(lol);
@@ -26,6 +37,6 @@ async function getTokenBalance() {
   }
 }
 
-getTokenBalance().catch(console.error);
+getTokenBalance().catch(console.error);*/
   </script>
 </html>
