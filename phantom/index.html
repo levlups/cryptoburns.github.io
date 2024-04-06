@@ -1,97 +1,50 @@
-<html>
-  <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solana Wallet Info</title>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest"></script>
+</head>
+<body>
+    <button id="connect">Connect Wallet</button>
     <script>
-      let connection;
-      let tokenMintAddress;
-      let mainaddress;
-      async function fetchTokenBalances() {
-        // Ensure Phantom is available in the window object
-        if (!('phantom' in window)) {
-          window.open('https://phantom.app/', '_blank');
-          return;
-        }
+        const connectButton = document.getElementById('connect');
+        connectButton.addEventListener('click', async () => {
+            if ('solana' in window) {
+                const provider = window.solana;
+                if (provider.isPhantom) {
+                    try {
+                        const resp = await provider.connect();
+                        const walletPublicKey = resp.publicKey;
+                        console.log('Wallet Public Key:', walletPublicKey.toString());
 
-        const provider = window.phantom?.solana;
+                        // Set up connection to Solana mainnet-beta
+                        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
 
-        // Try to connect to Phantom
-        try {
-          const resp = await provider.connect();
-          const walletPublicKey = resp.publicKey;
-          console.log('Wallet Public Key:', walletPublicKey.toString());
+                        // Get SOL Balance
+                        const balance = await connection.getBalance(walletPublicKey);
+                        const solBalance = balance / solanaWeb3.LAMPORTS_PER_SOL;
+                        console.log(`Wallet SOL Balance: ${solBalance} SOL`);
 
-          // Set up connection to Solana devnet
-           connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
-
-          mainaddress=window.phantom.solana.PublicKey(walletPublicKey.toString());
-
-           // Get the balance
-    const balance = await connection.getBalance(mainaddress);
-
-    // Convert the balance to SOL (since it's provided in lamports, Solana's smallest unit)
-    const solBalance = balance / new solanaWeb3.LAMPORTS_PER_SOL;
-    console.log(`Wallet SOL Balance: ${solBalance} SOL`);
-          // Token Mint Address (replace with the actual mint address)
-          tokenMintAddress = new solanaWeb3.PublicKey('DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G');
-
-       } catch (err) {
-    // { code: 4001, message: 'User rejected the request.' }
-}
-(async () => {
-  const publicKey = new solanaWeb3.PublicKey(
-    "3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu"
-  );
-  const solana = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
-  console.log(await solana.getAccountInfo(publicKey));
-  const info = await solana.getTokenAccountBalance( tokenMintAddress);
-    if (info.value.uiAmount == null) throw new Error('No balance found');
-    console.log('Balance (using Solana-Web3.js): ', info.value.uiAmount);
-    return info.value.uiAmount;
-})();
-
-async function getTokenBalanceWeb3(connection, tokenAccount) {
-    const info = await connection.getTokenAccountBalance( tokenMintAddress);
-    if (info.value.uiAmount == null) throw new Error('No balance found');
-    console.log('Balance (using Solana-Web3.js): ', info.value.uiAmount);
-    return info.value.uiAmount;
-}
-
-getTokenBalanceWeb3(connection, tokenMintAddress).catch(err => console.log(err));
-
-          
-
-         
-      }
-
-      fetchTokenBalances();
-
-
-
-async function getSPLTokenBalance(walletAddress, tokenMintAddress) {
-    // Connect to the Solana mainnet
-   // const connection = new web3.Connection(web3.clusterApiUrl('mainnet-beta'), 'confirmed');
-
-    // Create a PublicKey object for the wallet and token mint addresses
-    const walletPublicKey = new solanaWeb3.PublicKey(walletAddress);
-    const tokenMintPublicKey = new solanaWeb3.PublicKey(tokenMintAddress);
-
-    // Get the token account of the wallet for the specified token mint
-    const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, { mint: tokenMintPublicKey });
-
-    if (tokenAccounts.value.length > 0) {
-        const accountInfo = tokenAccounts.value[0].account.data.parsed.info;
-        const balance = accountInfo.tokenAmount.uiAmount;
-        console.log(`Wallet SPL Token Balance: ${balance} ${accountInfo.tokenAmount.unit}`);
-    } else {
-        console.log("This wallet does not have the specified SPL token.");
-    }
-}
-
-
-
-getSPLTokenBalance(mainaddress, tokenMintAddress);
-
-      
+                        // Assuming you want to fetch SPL Token balance, replace 'TokenMintAddressHere' with actual token mint address
+                        const tokenMintAddress = new solanaWeb3.PublicKey('TokenMintAddressHere');
+                        // Get SPL Token balance
+                        const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, { mint: tokenMintAddress });
+                        if (tokenAccounts.value.length > 0) {
+                            const accountInfo = tokenAccounts.value[0].account.data.parsed.info;
+                            const tokenBalance = accountInfo.tokenAmount.uiAmount;
+                            console.log(`Wallet SPL Token Balance: ${tokenBalance}`);
+                        } else {
+                            console.log("This wallet does not have the specified SPL token.");
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }
+            } else {
+                console.log('Phantom wallet not found. Please install it.');
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
