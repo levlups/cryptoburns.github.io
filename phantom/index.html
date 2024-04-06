@@ -2,6 +2,7 @@
   <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
   <body>
     <script>
+      let connection;
       async function fetchTokenBalances() {
         // Ensure Phantom is available in the window object
         if (!('phantom' in window)) {
@@ -18,7 +19,7 @@
           console.log('Wallet Public Key:', walletPublicKey.toString());
 
           // Set up connection to Solana devnet
-          const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
+           connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
 
           // Token Mint Address (replace with the actual mint address)
           const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
