@@ -3,6 +3,7 @@
   <body>
     <script>
       let connection;
+      let tokenMintAddress;
       async function fetchTokenBalances() {
         // Ensure Phantom is available in the window object
         if (!('phantom' in window)) {
@@ -22,7 +23,7 @@
            connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
 
           // Token Mint Address (replace with the actual mint address)
-          const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
+          tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
 
        } catch (err) {
     // { code: 4001, message: 'User rejected the request.' }
