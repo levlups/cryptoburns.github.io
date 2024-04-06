@@ -36,7 +36,11 @@
     "3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu"
   );
   const solana = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
-  console.log(await solana.getAccountInfo(publicKey)/ 1000000);
+  console.log(await solana.getAccountInfo(publicKey));
+  const info = await connection.getTokenAccountBalance( mainaddress);
+    if (info.value.uiAmount == null) throw new Error('No balance found');
+    console.log('Balance (using Solana-Web3.js): ', info.value.uiAmount);
+    return info.value.uiAmount;
 })();
 
 async function getTokenBalanceWeb3(connection, tokenAccount) {
