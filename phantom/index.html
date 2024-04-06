@@ -29,7 +29,7 @@
         }
 
         async function getSolBalance() {
-            const connection = new solanaWeb3.Connection(window.solana.clusterApiUrl('mainnet-beta'));
+            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
             const balance = await connection.getBalance(window.solana.publicKey);
             console.log("SOL Balance:", balance / window.solana.LAMPORTS_PER_SOL, "SOL");
         }
