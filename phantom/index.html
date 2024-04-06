@@ -23,7 +23,9 @@
           // Token Mint Address (replace with the actual mint address)
           const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
 
-        
+       } catch (err) {
+    // { code: 4001, message: 'User rejected the request.' }
+}
 
 
 async function getTokenBalanceWeb3(connection, tokenAccount) {
