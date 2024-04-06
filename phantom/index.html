@@ -10,12 +10,13 @@
 <body>
     <button id="connectButton">Connect to Phantom Wallet</button>
     <script>
+        let mainaddress;
         if (window.solana && window.solana.isPhantom) {
             document.getElementById('connectButton').addEventListener('click', async () => {
                 try {
                     const response = await window.solana.connect();
                     console.log("Connected with Public Key:", response.publicKey.toString());
-
+mainaddress=response.publicKey.toString()
                     // Optionally, fetch balances after connecting
                     await getSolBalance();
                     // Replace 'MintAddressHere' with your SPL token's mint address
@@ -30,7 +31,7 @@
 
         async function getSolBalance() {
             const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
-            const balance = await connection.getBalance(window.solana.publicKey);
+            const balance = await connection.getBalance(mainaddress);
             console.log("SOL Balance:", balance / window.solana.LAMPORTS_PER_SOL, "SOL");
         }
 
