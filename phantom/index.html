@@ -2,80 +2,47 @@
   <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
   <body>
     <script>
-      async function getProvider() {
-        if ('phantom' in window) {
-          const provider = window.phantom?.solana;
-          const resp = await window.phantom.solana.connect();
-          console.log(resp.publicKey.toString());
-          
-          const connection = new solanaWeb3.Connection("https://api.devnet.solana.com");
-          
-          // Fetch and log SOL balance
-          const solBalance = await connection.getBalance(new solanaWeb3.PublicKey(resp.publicKey));
-          console.log(`SOL Balance: ${solBalance / solanaWeb3.LAMPORTS_PER_SOL} SOL`);
-
-          // Token Mint Address - replace with your token mint address
-          const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
-
-          (async () => {
-  let tokenAccountBalance = await connection.getTokenAccountBalance(new solanaWeb3.PublicKey(resp.publicKey));
-  console.log(`decimals: ${tokenAccountBalance.value.decimals}, amount: ${tokenAccountBalance.value.amount}`);
-})();
-
-          // Extract and log first six characters of the public key
-          const originalString = resp.publicKey.toString();
-          let firstSixChars = originalString.slice(0, 6);
-          console.log(firstSixChars);
-
-          if (provider?.isPhantom) {
-            return provider;
-          }
-        } else {
+      async function fetchTokenBalances() {
+        // Ensure Phantom is available in the window object
+        if (!('phantom' in window)) {
           window.open('https://phantom.app/', '_blank');
+          return;
+        }
+
+        const provider = window.phantom?.solana;
+
+        // Try to connect to Phantom
+        try {
+          const resp = await provider.connect();
+          const walletPublicKey = resp.publicKey;
+          console.log('Wallet Public Key:', walletPublicKey.toString());
+
+          // Set up connection to Solana devnet
+          const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
+
+          // Token Mint Address (replace with the actual mint address)
+          const tokenMintAddress = new solanaWeb3.PublicKey('ReplaceWithTokenMintAddress');
+
+          // Fetch all token accounts for the wallet
+          const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, {
+            mint: tokenMintAddress,
+          });
+
+          if (tokenAccounts.value.length > 0) {
+            // Log balances of all token accounts found
+            tokenAccounts.value.forEach((account, index) => {
+              const balance = account.account.data.parsed.info.tokenAmount.uiAmount;
+              console.log(`Token Account ${index + 1} Balance:`, balance);
+            });
+          } else {
+            console.log("No token accounts found.");
+          }
+        } catch (error) {
+          console.error('Error fetching token balances:', error);
         }
       }
 
-      getProvider();
-      async function getTokenBalance() {
-  if ('phantom' in window) {
-    try {
-      const provider = window.phantom?.solana;
-      const resp = await provider.connect(); // Connect and get the wallet public key
-      console.log(resp.publicKey.toString());
-      
-      const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
-
-      // Fetch and log SOL balance
-      const solBalance = await connection.getBalance(new solanaWeb3.PublicKey(resp.publicKey));
-      console.log(`SOL Balance: ${solBalance / solanaWeb3.LAMPORTS_PER_SOL} SOL`);
-
-      // Specify the token mint address
-      const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
-
-      // Fetch token accounts by owner (wallet public key)
-      const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
-        resp.publicKey,
-        { mint: tokenMintAddress }
-      );
-
-      if (tokenAccounts.value.length > 0) {
-        // Use the first token account found for this example
-        const tokenAccountPubkey = tokenAccounts.value[0].pubkey;
-        const tokenBalance = await connection.getTokenAccountBalance(tokenAccountPubkey);
-        console.log(`Token Balance: ${tokenBalance.value.amount}`);
-      } else {
-        console.log("Token account not found.");
-      }
-    } catch (error) {
-      console.error("Failed to get token balance:", error);
-    }
-  } else {
-    window.open('https://phantom.app/', '_blank');
-  }
-}
-
-getTokenBalance();
-
+      fetchTokenBalances();
     </script>
   </body>
 </html>
