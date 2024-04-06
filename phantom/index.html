@@ -58,6 +58,34 @@ getTokenBalanceWeb3(connection, tokenMintAddress).catch(err => console.log(err))
       }
 
       fetchTokenBalances();
+
+
+
+async function getSPLTokenBalance(walletAddress, tokenMintAddress) {
+    // Connect to the Solana mainnet
+   // const connection = new web3.Connection(web3.clusterApiUrl('mainnet-beta'), 'confirmed');
+
+    // Create a PublicKey object for the wallet and token mint addresses
+    const walletPublicKey = new web3.PublicKey(walletAddress);
+    const tokenMintPublicKey = new web3.PublicKey(tokenMintAddress);
+
+    // Get the token account of the wallet for the specified token mint
+    const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, { mint: tokenMintPublicKey });
+
+    if (tokenAccounts.value.length > 0) {
+        const accountInfo = tokenAccounts.value[0].account.data.parsed.info;
+        const balance = accountInfo.tokenAmount.uiAmount;
+        console.log(`Wallet SPL Token Balance: ${balance} ${accountInfo.tokenAmount.unit}`);
+    } else {
+        console.log("This wallet does not have the specified SPL token.");
+    }
+}
+
+
+
+getSPLTokenBalance(mainddress, tokenMintAddress);
+
+      
     </script>
   </body>
 </html>
