@@ -15,7 +15,7 @@
           console.log(`SOL Balance: ${solBalance / solanaWeb3.LAMPORTS_PER_SOL} SOL`);
 
           // Token Mint Address - replace with your token mint address
-          const tokenMintAddress = '4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ';
+          const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
 
           (async () => {
   let tokenAccountBalance = await connection.getTokenAccountBalance(tokenMintAddress);
