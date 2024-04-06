@@ -17,19 +17,10 @@
           // Token Mint Address - replace with your token mint address
           const tokenMintAddress = '4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ';
 
-          // Fetch token accounts by owner
-          const accounts = await connection.getParsedTokenAccountsByOwner(
-            new solanaWeb3.PublicKey(resp.publicKey),
-            { mint: new solanaWeb3.PublicKey(tokenMintAddress) }
-          );
-
-          // Assuming there's at least one account, get and log the token balance
-          if (accounts.value.length > 0) {
-            const balance = accounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
-            console.log(`Token Balance: ${balance}`);
-          } else {
-            console.log("Token account not found.");
-          }
+          (async () => {
+  let tokenAccountBalance = await connection.getTokenAccountBalance(tokenMintAddress);
+  console.log(`decimals: ${tokenAccountBalance.value.decimals}, amount: ${tokenAccountBalance.value.amount}`);
+})();
 
           // Extract and log first six characters of the public key
           const originalString = resp.publicKey.toString();
