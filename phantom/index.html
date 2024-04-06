@@ -8,7 +8,7 @@
           const resp = await window.phantom.solana.connect();
           console.log(resp.publicKey.toString());
           
-          const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
+          const connection = new solanaWeb3.Connection("https://api.devnet.solana.com");
           
           // Fetch and log SOL balance
           const solBalance = await connection.getBalance(new solanaWeb3.PublicKey(resp.publicKey));
