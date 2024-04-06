@@ -25,6 +25,12 @@
 
           mainaddress=new solanaWeb3.PublicKey(walletPublicKey.toString());
 
+           // Get the balance
+    const balance = await connection.getBalance(mainaddress);
+
+    // Convert the balance to SOL (since it's provided in lamports, Solana's smallest unit)
+    const solBalance = balance / new solanaWeb3.LAMPORTS_PER_SOL;
+    console.log(`Wallet SOL Balance: ${solBalance} SOL`);
           // Token Mint Address (replace with the actual mint address)
           tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
 
