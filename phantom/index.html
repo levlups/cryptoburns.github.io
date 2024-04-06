@@ -28,6 +28,18 @@
             mint: tokenMintAddress,
           });
 
+ if(tokenAccounts && tokenAccounts.value && tokenAccounts.value.length > 0){
+      const walletTokenAccount = tokenAccounts.value[0]
+      const amount = tokenAccounts.account.data.parsed.info.tokenAmount.uiAmount
+      console.log(`amount: ${amount}`);
+      return amount
+    }
+
+
+
+
+          
+
           if (tokenAccounts.value.length > 0) {
             // Log balances of all token accounts found
             tokenAccounts.value.forEach((account, index) => {
