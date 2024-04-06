@@ -29,13 +29,13 @@
         }
 
         async function getSolBalance() {
-            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+            const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
             const balance = await connection.getBalance(window.solana.publicKey);
             console.log("SOL Balance:", balance / window.solana.LAMPORTS_PER_SOL, "SOL");
         }
 
         async function getSplTokenBalance(mintAddress) {
-            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+            const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
             const mintPublicKey = new solanaWeb3.PublicKey(mintAddress);
             const tokenAccounts = await connection.getParsedTokenAccountsByOwner(window.solana.publicKey, { mint: mintPublicKey });
 
