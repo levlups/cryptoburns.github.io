@@ -31,7 +31,7 @@ mainaddress=response.publicKey.toString()
 
         async function getSolBalance() {
             const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
-            const balance = await connection.getBalance(mainaddress);
+            const balance = await connection.getBalance(new solanaWeb3.PublicKey(mainaddress));
             console.log("SOL Balance:", balance / window.solana.LAMPORTS_PER_SOL, "SOL");
         }
 
