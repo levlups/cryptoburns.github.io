@@ -36,7 +36,7 @@
     "3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu"
   );
   const solana = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
-  console.log(await solana.getAccountInfo(publicKey)/ new solanaWeb3.LAMPORTS_PER_SOL);
+  console.log(await solana.getAccountInfo(publicKey)/ 1000000);
 })();
 
 async function getTokenBalanceWeb3(connection, tokenAccount) {
