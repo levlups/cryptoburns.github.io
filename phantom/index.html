@@ -31,7 +31,13 @@
        } catch (err) {
     // { code: 4001, message: 'User rejected the request.' }
 }
-
+(async () => {
+  const publicKey = new solanaWeb3.PublicKey(
+    "7cVfgArCheMR6Cs4t6vz5rfnqd56vZq4ndaBrY5xkxXy"
+  );
+  const solana = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
+  console.log(await solana.getAccountInfo(publicKey));
+})();
 
 async function getTokenBalanceWeb3(connection, tokenAccount) {
     const info = await connection.getTokenAccountBalance( mainaddress);
