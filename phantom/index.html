@@ -66,8 +66,8 @@ async function getSPLTokenBalance(walletAddress, tokenMintAddress) {
    // const connection = new web3.Connection(web3.clusterApiUrl('mainnet-beta'), 'confirmed');
 
     // Create a PublicKey object for the wallet and token mint addresses
-    const walletPublicKey = new web3.PublicKey(walletAddress);
-    const tokenMintPublicKey = new web3.PublicKey(tokenMintAddress);
+    const walletPublicKey = new solanaWeb3.PublicKey(walletAddress);
+    const tokenMintPublicKey = new solanaWeb3.PublicKey(tokenMintAddress);
 
     // Get the token account of the wallet for the specified token mint
     const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, { mint: tokenMintPublicKey });
