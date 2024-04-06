@@ -2,49 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Solana Wallet Info</title>
+    <title>Phantom Wallet Integration</title>
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest"></script>
 </head>
 <body>
-    <button id="connect">Connect Wallet</button>
+    <button id="connectButton">Connect to Phantom Wallet</button>
     <script>
-        const connectButton = document.getElementById('connect');
-        connectButton.addEventListener('click', async () => {
-            if ('solana' in window) {
-                const provider = window.solana;
-                if (provider.isPhantom) {
-                    try {
-                        const resp = await provider.connect();
-                        const walletPublicKey = resp.publicKey;
-                        console.log('Wallet Public Key:', walletPublicKey.toString());
+        if (window.solana && window.solana.isPhantom) {
+            document.getElementById('connectButton').addEventListener('click', async () => {
+                try {
+                    const response = await window.solana.connect();
+                    console.log("Connected with Public Key:", response.publicKey.toString());
 
-                        // Set up connection to Solana mainnet-beta
-                        const connection = new solanaWeb3.Connection(new solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
-
-                        // Get SOL Balance
-                        const balance = await connection.getBalance(walletPublicKey);
-                        const solBalance = balance / solanaWeb3.LAMPORTS_PER_SOL;
-                        console.log(`Wallet SOL Balance: ${solBalance} SOL`);
-
-                        // Assuming you want to fetch SPL Token balance, replace 'TokenMintAddressHere' with actual token mint address
-                        const tokenMintAddress = new solanaWeb3.PublicKey('TokenMintAddressHere');
-                        // Get SPL Token balance
-                        const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, { mint: tokenMintAddress });
-                        if (tokenAccounts.value.length > 0) {
-                            const accountInfo = tokenAccounts.value[0].account.data.parsed.info;
-                            const tokenBalance = accountInfo.tokenAmount.uiAmount;
-                            console.log(`Wallet SPL Token Balance: ${tokenBalance}`);
-                        } else {
-                            console.log("This wallet does not have the specified SPL token.");
-                        }
-                    } catch (err) {
-                        console.error(err);
-                    }
+                    // Optionally, fetch balances after connecting
+                    await getSolBalance();
+                    // Replace 'MintAddressHere' with your SPL token's mint address
+                    await getSplTokenBalance('MintAddressHere');
+                } catch (error) {
+                    console.error(error);
                 }
+            });
+        } else {
+            console.log("Phantom Wallet not detected. Please install it.");
+        }
+
+        async function getSolBalance() {
+            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+            const balance = await connection.getBalance(window.solana.publicKey);
+            console.log("SOL Balance:", balance / solanaWeb3.LAMPORTS_PER_SOL, "SOL");
+        }
+
+        async function getSplTokenBalance(mintAddress) {
+            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+            const mintPublicKey = new solanaWeb3.PublicKey(mintAddress);
+            const tokenAccounts = await connection.getParsedTokenAccountsByOwner(window.solana.publicKey, { mint: mintPublicKey });
+
+            if (tokenAccounts.value.length > 0) {
+                const accountInfo = tokenAccounts.value[0].account.data.parsed.info;
+                const tokenBalance = accountInfo.tokenAmount.uiAmount;
+                console.log("SPL Token Balance:", tokenBalance);
             } else {
-                console.log('Phantom wallet not found. Please install it.');
+                console.log("This wallet does not have the specified SPL token.");
             }
-        });
+        }
     </script>
 </body>
 </html>
