@@ -23,17 +23,7 @@
           // Token Mint Address (replace with the actual mint address)
           const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
 
-          // Fetch all token accounts for the wallet
-          const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, {
-            mint: tokenMintAddress,
-          });
-
- if(tokenAccounts && tokenAccounts.value && tokenAccounts.value.length > 0){
-      const walletTokenAccount = tokenAccounts.value[0]
-      const amount = tokenAccounts.account.data.parsed.info.tokenAmount.uiAmount
-      console.log(`amount: ${amount}`);
-      return amount
-    }
+        
 
 
 async function getTokenBalanceWeb3(connection, tokenAccount) {
@@ -47,18 +37,7 @@ getTokenBalanceWeb3(connection, tokenMintAddress).catch(err => console.log(err))
 
           
 
-          if (tokenAccounts.value.length > 0) {
-            // Log balances of all token accounts found
-            tokenAccounts.value.forEach((account, index) => {
-              const balance = account.account.data.parsed.info.tokenAmount.uiAmount;
-              console.log(`Token Account ${index + 1} Balance:`, balance);
-            });
-          } else {
-            console.log("No token accounts found.");
-          }
-        } catch (error) {
-          console.error('Error fetching token balances:', error);
-        }
+         
       }
 
       fetchTokenBalances();
