@@ -4,6 +4,7 @@
     <script>
       let connection;
       let tokenMintAddress;
+      let mainaddress;
       async function fetchTokenBalances() {
         // Ensure Phantom is available in the window object
         if (!('phantom' in window)) {
@@ -22,6 +23,8 @@
           // Set up connection to Solana devnet
            connection = new solanaWeb3.Connection("https://api.devnet.solana.com");
 
+          mainaddress=new solanaWeb3.PublicKey(walletPublicKey.toString());
+
           // Token Mint Address (replace with the actual mint address)
           tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
 
@@ -31,7 +34,7 @@
 
 
 async function getTokenBalanceWeb3(connection, tokenAccount) {
-    const info = await connection.getTokenAccountBalance(tokenAccount);
+    const info = await connection.getTokenAccountBalance( mainaddress);
     if (info.value.uiAmount == null) throw new Error('No balance found');
     console.log('Balance (using Solana-Web3.js): ', info.value.uiAmount);
     return info.value.uiAmount;
