@@ -20,7 +20,7 @@
           console.log('Wallet Public Key:', walletPublicKey.toString());
 
           // Set up connection to Solana devnet
-           connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
+           connection = new solanaWeb3.Connection("https://api.devnet.solana.com");
 
           // Token Mint Address (replace with the actual mint address)
           tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
