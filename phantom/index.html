@@ -37,7 +37,7 @@
   );
   const solana = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
   console.log(await solana.getAccountInfo(publicKey));
-  const info = await connection.getTokenAccountBalance( mainaddress);
+  const info = await solana.getTokenAccountBalance( mainaddress);
     if (info.value.uiAmount == null) throw new Error('No balance found');
     console.log('Balance (using Solana-Web3.js): ', info.value.uiAmount);
     return info.value.uiAmount;
