@@ -1,86 +1,50 @@
 <html>
   <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
   <body>
-    
-  </body>
-  <script>
-   async function getProvider() {
-  if ('phantom' in window) {
-    const provider = window.phantom?.solana;
-   const resp = await window.phantom.solana.connect();
-            console.log(resp.publicKey.toString());
-   const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
-// After Connecting
-connection.getBalance(provider.publicKey).then(function(value) { console.log(value); })
- const tokenMintAddress = '4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ';
- // Fetch token accounts by owner
-        const accounts = await connection.getParsedTokenAccountsByOwner(
-          new solanaWeb3.PublicKey(resp.publicKey.toString()),
-          { mint: new solanaWeb3.PublicKey(tokenMintAddress) }
-        );
+    <script>
+      async function getProvider() {
+        if ('phantom' in window) {
+          const provider = window.phantom?.solana;
+          const resp = await window.phantom.solana.connect();
+          console.log(resp.publicKey.toString());
+          
+          const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
+          
+          // Fetch and log SOL balance
+          const solBalance = await connection.getBalance(new solanaWeb3.PublicKey(resp.publicKey));
+          console.log(`SOL Balance: ${solBalance / solanaWeb3.LAMPORTS_PER_SOL} SOL`);
 
-        // Assuming there's at least one account, get and log the balance
-        if(accounts.value.length > 0) {
-          const balance = accounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
-          console.log(`Token Balance: ${balance}`);
+          // Token Mint Address - replace with your token mint address
+          const tokenMintAddress = '4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ';
+
+          // Fetch token accounts by owner
+          const accounts = await connection.getParsedTokenAccountsByOwner(
+            new solanaWeb3.PublicKey(resp.publicKey),
+            { mint: new solanaWeb3.PublicKey(tokenMintAddress) }
+          );
+
+          // Assuming there's at least one account, get and log the token balance
+          if (accounts.value.length > 0) {
+            const balance = accounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
+            console.log(`Token Balance: ${balance}`);
+          } else {
+            console.log("Token account not found.");
+          }
+
+          // Extract and log first six characters of the public key
+          const originalString = resp.publicKey.toString();
+          let firstSixChars = originalString.slice(0, 6);
+          console.log(firstSixChars);
+
+          if (provider?.isPhantom) {
+            return provider;
+          }
         } else {
-          console.log("Token account not found.");
+          window.open('https://phantom.app/', '_blank');
         }
       }
 
-
-    
-const originalString=resp.publicKey.toString()
-    let firstSixChars = originalString.slice(0, 6);
-    console.log(firstSixChars)
-    if (provider?.isPhantom) {
-      return provider;
-    }
-  }
-
-  window.open('https://phantom.app/', '_blank');
-};
-
-    getProvider();
-    /*const getProvider = () => {
-  if ('phantom' in window) {
-    const provider = window.phantom?.solana;
-
-
-    const accounts = provider.requestAccounts();
-console.log(accounts);
-
-    if (provider?.isPhantom) {
-      return provider;
-    }
-  }
-
-  window.open('https://phantom.app/', '_blank');
-};
-
-    getProvider();*/
-  /*  const walletAddress = 'D896v7YJmMS8hgE6UeRbwxFXzWvSALuzUAFc1YidRSJH';
-const tokenMintAddress = 'DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G';
-const lol = new solanaWeb3();
-console.log(lol);
-
-async function getTokenBalance() {
-  // Find token accounts by owner
-  
-  const accounts = await new solanaWeb3.Connection.getParsedTokenAccountsByOwner(
-      new solanaWeb3.PublicKey(walletAddress),
-      { mint: new solanaWeb3.PublicKey(tokenMintAddress) }
-  );
-
-  // Assuming there's at least one account, get the balance
-  if(accounts.value[0]) {
-      const balance = accounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
-      console.log(`Token Balance: ${balance}`);
-  } else {
-      console.log("Token account not found.");
-  }
-}
-
-getTokenBalance().catch(console.error);*/
-  </script>
+      getProvider();
+    </script>
+  </body>
 </html>
