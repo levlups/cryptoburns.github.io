@@ -21,7 +21,7 @@
           const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
 
           // Token Mint Address (replace with the actual mint address)
-          const tokenMintAddress = new solanaWeb3.PublicKey('ReplaceWithTokenMintAddress');
+          const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
 
           // Fetch all token accounts for the wallet
           const tokenAccounts = await connection.getParsedTokenAccountsByOwner(walletPublicKey, {
