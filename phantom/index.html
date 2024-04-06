@@ -36,6 +36,46 @@
       }
 
       getProvider();
+      async function getTokenBalance() {
+  if ('phantom' in window) {
+    try {
+      const provider = window.phantom?.solana;
+      const resp = await provider.connect(); // Connect and get the wallet public key
+      console.log(resp.publicKey.toString());
+      
+      const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'));
+
+      // Fetch and log SOL balance
+      const solBalance = await connection.getBalance(new solanaWeb3.PublicKey(resp.publicKey));
+      console.log(`SOL Balance: ${solBalance / solanaWeb3.LAMPORTS_PER_SOL} SOL`);
+
+      // Specify the token mint address
+      const tokenMintAddress = new solanaWeb3.PublicKey('4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ');
+
+      // Fetch token accounts by owner (wallet public key)
+      const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
+        resp.publicKey,
+        { mint: tokenMintAddress }
+      );
+
+      if (tokenAccounts.value.length > 0) {
+        // Use the first token account found for this example
+        const tokenAccountPubkey = tokenAccounts.value[0].pubkey;
+        const tokenBalance = await connection.getTokenAccountBalance(tokenAccountPubkey);
+        console.log(`Token Balance: ${tokenBalance.value.amount}`);
+      } else {
+        console.log("Token account not found.");
+      }
+    } catch (error) {
+      console.error("Failed to get token balance:", error);
+    }
+  } else {
+    window.open('https://phantom.app/', '_blank');
+  }
+}
+
+getTokenBalance();
+
     </script>
   </body>
 </html>
