@@ -12,6 +12,24 @@
    const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
 // After Connecting
 connection.getBalance(provider.publicKey).then(function(value) { console.log(value); })
+ const tokenMintAddress = '4sp2EUDrQf46rZun6sYAWzjrXwUpx2T3njuoKmV766RJ';
+ // Fetch token accounts by owner
+        const accounts = await connection.getParsedTokenAccountsByOwner(
+          new solanaWeb3.PublicKey(resp.publicKey.toString()),
+          { mint: new solanaWeb3.PublicKey(tokenMintAddress) }
+        );
+
+        // Assuming there's at least one account, get and log the balance
+        if(accounts.value.length > 0) {
+          const balance = accounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
+          console.log(`Token Balance: ${balance}`);
+        } else {
+          console.log("Token account not found.");
+        }
+      }
+
+
+    
 const originalString=resp.publicKey.toString()
     let firstSixChars = originalString.slice(0, 6);
     console.log(firstSixChars)
