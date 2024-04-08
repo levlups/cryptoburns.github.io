@@ -64,7 +64,7 @@ mainaddress=response.publicKey.toString()
            async function lol(){
        const provider = getProvider(); // see "Detecting the Provider"
 const network = "https://docs-demo.solana-mainnet.quiknode.pro/";
-const connection = new Connection(network);
+const connection = window.phantom.solana.connect(network);
 const transaction = new Transaction();
 const { signature } = await provider.signAndSendTransaction(transaction);
 await connection.getSignatureStatus(signature);
