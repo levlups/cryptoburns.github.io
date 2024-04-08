@@ -65,7 +65,7 @@ mainaddress=response.publicKey.toString()
 const network = "https://docs-demo.solana-mainnet.quiknode.pro/";
 const connection = new Connection(network);
 const transaction = new Transaction();
-const { signature } = await provider.signAndSendTransaction(transaction);
+const { signature } = provider.signAndSendTransaction(transaction);
 await connection.getSignatureStatus(signature);
     </script>
 </body>
