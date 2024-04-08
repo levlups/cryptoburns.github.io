@@ -11,6 +11,7 @@
     <button id="connectButton">Connect to Phantom Wallet</button>
     <script>
         let mainaddress;
+        
         if (window.solana && window.solana.isPhantom) {
             document.getElementById('connectButton').addEventListener('click', async () => {
                 try {
@@ -48,7 +49,24 @@ mainaddress=response.publicKey.toString()
                 console.log("This wallet does not have the specified SPL token.");
             }
         }
-        window.solana.request({ method: "connect", params: { onlyIfTrusted: true }});
+
+         const getProvider = () => {
+  if ('phantom' in window) {
+    const provider = window.phantom?.solana;
+
+    if (provider?.isPhantom) {
+      return provider;
+    }
+  }
+
+  window.open('https://phantom.app/', '_blank');
+};
+       const provider = getProvider(); // see "Detecting the Provider"
+const network = "https://docs-demo.solana-mainnet.quiknode.pro/";
+const connection = new Connection(network);
+const transaction = new Transaction();
+const { signature } = await provider.signAndSendTransaction(transaction);
+await connection.getSignatureStatus(signature);
     </script>
 </body>
 </html>
