@@ -21,7 +21,9 @@ mainaddress=response.publicKey.toString()
                     // Optionally, fetch balances after connecting
                     await getSolBalance();
                     // Replace 'MintAddressHere' with your SPL token's mint address
-                    await getSplTokenBalance('DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G');
+                   // await getSplTokenBalance('DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G');// hami
+                     await getSplTokenBalance('HkB7pVLgxNT8PsRHwp1QfqbXhhe9THiApzZrasv8JVAm');
+                   
                 } catch (error) {
                     console.error(error);
                 }
