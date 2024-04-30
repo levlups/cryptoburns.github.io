@@ -1,53 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paywall Check</title>
- <script src="https://cdn.jsdelivr.net/npm/buffer@6.0.3/index.min.js"></script>
-      <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+  <link rel="stylesheet" href="index.css" type="text/css">
+  <script src="https://unpkg.com/@solana/web3.js@v1.33.0/lib/index.iife.js"></script>
 </head>
+
 <body>
-    <button id="payButton">Pay 0.1 SOL</button>
 
-    <script>
-   async function connectWallet() {
-    try {
-        const { solana } = window;
-        if (solana && solana.isPhantom) {
-            const response = await solana.connect({ onlyIfTrusted: true });
-            console.log(response.publicKey.toString())
-            return response.publicKey.toString();
-        } else {
-            throw new Error("Phantom wallet not found. Please install it.");
+  <div class="column">
+    <img class="Image" src="https://cryptologos.cc/logos/solana-sol-logo.png?v=024" alt="Solana">
+    <button id="connect_button" class="button-9" onclick="connectWallet()">Connect</button>
+    <input class="Input" type="number" placeholder="Sol to send" id="quantity" />
+    <button class="button-9" onclick="sendButtonClick()">
+      Send
+    </button>
+    <p id="status_p"><span id="status"></span></p>
+  </div>
+  <script>
+    var wallet;
+    const lamports_per_sol = solanaWeb3.LAMPORTS_PER_SOL;
+    function connectWallet() {
+      (async () => {
+        try {
+          wallet = await window.solana.connect();
+        } catch (err) {
+          console.log(err);
         }
-    } catch (error) {
-        console.error("Wallet connection error:", error);
+      })();
+      window.solana.on(
+        "connect",
+        () => (
+          document.getElementById("connect_button").innerText = "Connected"
+        )
+      );
     }
-}
 
-document.getElementById('payButton').addEventListener('click', async () => {
-    const payerPublicKey = await connectWallet(); // Connect to Phantom and get public key
-    if (payerPublicKey) {
+    async function sendButtonClick() {
+      const receiverAddress = "39QcE4gSNztpjvq78aa45W6J9Pn551is52C2XxhSsDTR"
+
+      const quantity = document.getElementById("quantity").value
+      if (quantity != null && quantity != 0) {
+        document.getElementById("status_p").text = "Status";
+        document.getElementById("status_p").innerText = "Sending " + quantity + " SOL to " + ellipsizeAddress(receiverAddress) + " account address";
+        await signInTransactionAndSendMoney(receiverAddress, quantity)
+      } else {
+        document.getElementById("status_p").text = "Status";
+        document.getElementById("status_p").innerText = "Amount must be more than 0!"
+      }
+
+    }
+
+    function ellipsizeAddress(str) {
+      if (str.length > 35) {
+        return str.substr(0, 8) + '...' + str.substr(str.length - 8, str.length);
+      }
+      return str;
+    }
+
+    function signInTransactionAndSendMoney(destPubkeyStr, quantity) {
+      (async () => {
+        const network = "https://api.devnet.solana.com";
+        const connection = new solanaWeb3.Connection(network);
         const transaction = new solanaWeb3.Transaction();
-        const transferInstruction = solanaWeb3.SystemProgram.transfer({
-            fromPubkey: payerPublicKey,
-            toPubkey: new solanaWeb3.PublicKey(payerPublicKey),
-            lamports: solanaWeb3.LAMPORTS_PER_SOL * 0.1 // Adjust as needed for the payment
-        });
-        transaction.add(transferInstruction);
 
         try {
-            const provider = window.phantom.solana;
-            const { signature } = await provider.signAndSendTransaction(transaction);
-            await connection.confirmTransaction(signature);
-            console.log('Transaction successful, signature:', signature);
-        } catch (error) {
-            console.error('Transaction failed:', error);
-        }
-    }
-});
+          const lamports = quantity * lamports_per_sol;
 
-    </script>
+          console.log("starting sendMoney");
+          const destPubkey = new solanaWeb3.PublicKey(destPubkeyStr);
+          const walletAccountInfo = await connection.getAccountInfo(
+            wallet.publicKey
+          );
+          console.log("wallet data size", walletAccountInfo?.data.length);
+
+          const receiverAccountInfo = await connection.getAccountInfo(
+            destPubkey
+          );
+          console.log("receiver data size", receiverAccountInfo?.data.length);
+
+          const instruction = solanaWeb3.SystemProgram.transfer({
+            fromPubkey: wallet.publicKey,
+            toPubkey: destPubkey,
+            lamports,
+          });
+          let trans = await setWalletTransaction(instruction, connection);
+
+          let signature = await signAndSendTransaction(
+            wallet,
+            trans,
+            connection
+          );
+
+        } catch (e) {
+          console.warn("Failed", e);
+        }
+
+      })();
+
+      async function setWalletTransaction(instruction, connection) {
+        const transaction = new solanaWeb3.Transaction();
+        transaction.add(instruction);
+        transaction.feePayer = wallet.publicKey;
+        let hash = await connection.getRecentBlockhash();
+        console.log("blockhash", hash);
+        transaction.recentBlockhash = hash.blockhash;
+        return transaction;
+      }
+
+      async function signAndSendTransaction(wallet, transaction, connection) {
+        // Sign transaction, broadcast, and confirm
+        const { signature } = await window.solana.signAndSendTransaction(
+          transaction
+        );
+        await connection.confirmTransaction(signature);
+        return signature;
+      }
+    }
+  </script>
 </body>
+
 </html>
