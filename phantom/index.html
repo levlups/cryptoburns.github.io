@@ -33,8 +33,8 @@ mainaddress=response.publicKey.toString()
         }
 
         async function getSolBalance() {
-      //const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
-    const connection =    await window.solana.connect()
+      const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
+   // const connection =    await window.solana.connect()
             const balance = await connection.getBalance(new solanaWeb3.PublicKey(mainaddress));
             console.log("SOL Balance:", balance / 1000000000, "SOL");
         }
@@ -64,7 +64,7 @@ mainaddress=response.publicKey.toString()
 
   window.open('https://phantom.app/', '_blank');
 };
-           async function lol(){
+         /*  async function lol(){
        const provider = getProvider(); // see "Detecting the Provider"
 const network = "https://docs-demo.solana-mainnet.quiknode.pro/";
 const connection = window.phantom.solana.connect(network);
@@ -72,7 +72,40 @@ const transaction = new Transaction();
 const { signature } = await provider.signAndSendTransaction(transaction);
 await connection.getSignatureStatus(signature);
            }
-        lol();
+        lol();*/
+
+        async function processTransaction() {
+    const provider = getProvider();
+    if (!provider) {
+        console.error("Phantom provider is not available.");
+        return;
+    }
+    const network = "https://docs-demo.solana-mainnet.quiknode.pro/"; // Replace this with your QuickNode RPC URL
+    const connection = new solanaWeb3.Connection(network);
+
+    // Ensure you have the user's wallet connected
+    try {
+        await provider.connect();
+    } catch (error) {
+        console.error("Failed to connect to the wallet:", error);
+        return;
+    }
+
+    // Create and send a transaction
+    const transaction = new solanaWeb3.Transaction();
+    // Add instructions to the transaction here, e.g., a transfer instruction
+
+    try {
+        const { signature } = await provider.signAndSendTransaction(transaction);
+        await connection.confirmTransaction(signature);
+        console.log("Transaction confirmed with signature:", signature);
+    } catch (error) {
+        console.error("Failed to send transaction:", error);
+    }
+}
+
+processTransaction();
+
     </script>
 </body>
 </html>
