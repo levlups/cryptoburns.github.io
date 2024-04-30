@@ -16,6 +16,7 @@
         const { solana } = window;
         if (solana && solana.isPhantom) {
             const response = await solana.connect({ onlyIfTrusted: true });
+            console.log(response.publicKey)
             return response.publicKey;
         } else {
             throw new Error("Phantom wallet not found. Please install it.");
