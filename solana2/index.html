@@ -111,18 +111,12 @@
         return transaction;
       }
 
-     async function signAndSendTransaction(wallet, transaction, connection) {
+async function signAndSendTransaction(wallet, transaction, connection) {
   try {
     const { signature } = await window.solana.signAndSendTransaction(transaction);
     console.log("Transaction signature", signature);
 
-    // Try to confirm the transaction with a longer timeout period
-    const confirmation = await connection.confirmTransaction({
-      signature: signature,
-      commitment: 'finalized',
-      confirmationStatus: 'confirmed'
-    }, 'max'); // 'max' can be adjusted as needed, it sets the max timeout for confirmation
-
+    const confirmation = await connection.confirmTransaction(signature, "finalized");
     console.log("Transaction confirmation status", confirmation);
 
     if (confirmation.value.err) {
@@ -139,6 +133,7 @@
     return { success: false, error: e.message };
   }
 }
+
       }
       
       
