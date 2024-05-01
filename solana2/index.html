@@ -13,6 +13,7 @@
     <img class="Image" src="https://cryptologos.cc/logos/solana-sol-logo.png?v=024" alt="Solana">
     <button id="connect_button" class="button-9" onclick="connectWallet()">Connect</button>
     <input class="Input" type="number" placeholder="Sol to send" id="quantity" />
+    <p id="address">address :</p>
     <button class="button-9" onclick="sendButtonClick()">
       Send
     </button>
@@ -25,6 +26,7 @@
       (async () => {
         try {
           wallet = await window.solana.connect();
+           document.getElementById("address").innerText =    wallet.publicKey;
         } catch (err) {
           console.log(err);
         }
@@ -38,7 +40,7 @@
     }
 
     async function sendButtonClick() {
-      const receiverAddress = "3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu"
+      const receiverAddress = "8nbJxySWpxhY8ZmQ9dRN4WTA1SDXT8K7ZrbEYutxodGm"
 
       const quantity = document.getElementById("quantity").value
       if (quantity != null && quantity != 0) {
