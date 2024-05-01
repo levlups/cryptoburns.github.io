@@ -1,1 +1,106 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="index.css" type="text/css">
+  <script src="https://unpkg.com/@solana/web3.js@v1.33.0/lib/index.iife.js"></script>
+</head>
+
+<body>
+
+  <div class="column">
+    <img class="Image" src="https://cryptologos.cc/logos/solana-sol-logo.png?v=024" alt="Solana">
+    <button id="connect_button" class="button-9" onclick="connectWallet()">Connect</button>
+    <input class="Input" type="number" placeholder="Sol to send" id="quantity" />
+    <button class="button-9" onclick="sendButtonClick()">
+      Send
+    </button>
+    <p id="status"></p>
+  </div>
+  <script>
+    var wallet;
+    const lamports_per_sol = solanaWeb3.LAMPORTS_PER_SOL;
+
+    function connectWallet() {
+      (async () => {
+        try {
+          wallet = await window.solana.connect();
+          document.getElementById("connect_button").innerText = "Connected";
+        } catch (err) {
+          console.log(err);
+          document.getElementById("status").innerText = "Connection failed: " + err.message;
+        }
+      })();
+    }
+
+    async function sendButtonClick() {
+      const receiverAddress = "3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu";
+      const quantity = document.getElementById("quantity").value;
+      if (quantity && quantity > 0) {
+        document.getElementById("status").innerText = "Sending " + quantity + " SOL to " + ellipsizeAddress(receiverAddress);
+        const result = await signInTransactionAndSendMoney(receiverAddress, quantity);
+        if (result.success) {
+          document.getElementById("status").innerText = "Transaction successful! Signature: " + result.signature;
+        } else {
+          document.getElementById("status").innerText = "Transaction failed: " + result.error;
+        }
+      } else {
+        document.getElementById("status").innerText = "Amount must be more than 0!";
+      }
+    }
+
+    function ellipsizeAddress(str) {
+      if (str.length > 35) {
+        return str.substr(0, 8) + '...' + str.substr(str.length - 8, str.length);
+      }
+      return str;
+    }
+
+    async function signInTransactionAndSendMoney(destPubkeyStr, quantity) {
+      const network = "https://api.devnet.solana.com";
+      const connection = new solanaWeb3.Connection(network);
+      try {
+        const lamports = quantity * lamports_per_sol;
+        const destPubkey = new solanaWeb3.PublicKey(destPubkeyStr);
+        const instruction = solanaWeb3.SystemProgram.transfer({
+          fromPubkey: wallet.publicKey,
+          toPubkey: destPubkey,
+          lamports
+        });
+        let transaction = await setWalletTransaction(instruction, connection);
+        return await signAndSendTransaction(wallet, transaction, connection);
+      } catch (e) {
+        console.warn("Failed to prepare transaction", e);
+        return { success: false, error: e.message };
+      }
+    }
+
+    async function setWalletTransaction(instruction, connection) {
+      const transaction = new solanaWeb3.Transaction();
+      transaction.add(instruction);
+      transaction.feePayer = wallet.publicKey;
+      let hash = await connection.getRecentBlockhash();
+      transaction.recentBlockhash = hash.blockhash;
+      return transaction;
+    }
+
+    async function signAndSendTransaction(wallet, transaction, connection) {
+      try {
+        const { signature } = await window.solana.signAndSendTransaction(transaction);
+        const confirmation = await connection.confirmTransaction(signature, "finalized");
+        if (confirmation.value.err) {
+          console.warn("Transaction failed:", confirmation.value.err);
+          return { success: false, error: "Transaction confirmation failed: " + confirmation.value.err };
+        } else {
+          return { success: true, signature: signature };
+        }
+      } catch (e) {
+        console.warn("Failed to send transaction:", e);
+        return { success: false, error: e.message };
+      }
+    }
+  </script>
+</body>
+
+</html>
