@@ -63,7 +63,9 @@
 
     function signInTransactionAndSendMoney(destPubkeyStr, quantity) {
       (async () => {
-        const network = "https://api.devnet.solana.com";
+       // const network = "https://api.devnet.solana.com";
+  const network = "https://api.mainnet-beta.solana.com";
+  
         const connection = new solanaWeb3.Connection(network);
         const transaction = new solanaWeb3.Transaction();
 
