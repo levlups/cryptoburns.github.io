@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solana Transaction with Phantom</title>
+    <script src="https://cdn.jsdelivr.net/gh/solana-labs/wallet-adapter/packages/wallets/phantom/src/index.js"></script>
+</head>
+<body>
+    <button id="connectButton">Connect Wallet</button>
+    <button id="sendSolButton" disabled>Send 1 SOL</button>
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const sendSolButton = document.getElementById('sendSolButton');
+
+        let provider;
+
+        async function connectWallet() {
+            if ("solana" in window) {
+                provider = window.solana;
+                if (provider.isPhantom) {
+                    try {
+                        await provider.connect({ onlyIfTrusted: true });
+                        console.log("Connected to Phantom wallet");
+                        sendSolButton.disabled = false;
+                    } catch (error) {
+                        console.error("Could not connect to Phantom wallet:", error);
+                    }
+                } else {
+                    alert("Phantom wallet is not installed!");
+                }
+            }
+        }
+
+        async function sendSol() {
+            if (!provider.publicKey) {
+                alert("Connect to Phantom wallet first!");
+                return;
+            }
+
+            const transaction = await provider.request({
+                method: "solana_createTransaction",
+                params: {
+                    recipient: provider.publicKey.toString(),
+                    value: 0.001, // in SOL
+                },
+            });
+
+            try {
+                const signature = await provider.request({
+                    method: "solana_sendTransaction",
+                    params: {
+                        message: transaction,
+                    },
+                });
+                console.log("Transaction sent! Signature:", signature);
+                alert("Transaction successful! Signature: " + signature);
+            } catch (error) {
+                console.error("Transaction failed:", error);
+                alert("Transaction failed: " + error.message);
+            }
+        }
+
+        connectButton.addEventListener('click', connectWallet);
+        sendSolButton.addEventListener('click', sendSol);
+    </script>
+</body>
+</html>
