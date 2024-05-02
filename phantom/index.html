@@ -74,7 +74,7 @@ mainaddress=response.publicKey.toString()
 };
 
 
-        async sendTranssact(){
+        async function sendTranssact(){
 const provider = getProvider(); // see "Detecting the Provider"
 const network = "https://api.devnet.solana.com";
 const connection = new Connection(network);
