@@ -23,10 +23,10 @@ function connectWallet(){
                     console.log("Connected with Public Key:", response.publicKey.toString());
 //mainaddress=response.publicKey.toString()
                     // Optionally, fetch balances after connecting
-                    await getSolBalance();
+                 //   await getSolBalance();
                     // Replace 'MintAddressHere' with your SPL token's mint address
                    // await getSplTokenBalance('DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G');// hami
-                     await getSplTokenBalance('5Jozez85huvwbjkNxuQZpJvK8mydZAXtpbZ8RBY6or5');
+                   //  await getSplTokenBalance('5Jozez85huvwbjkNxuQZpJvK8mydZAXtpbZ8RBY6or5');
                    
                 } catch (error) {
                     console.error(error);
