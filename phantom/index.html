@@ -5,6 +5,7 @@
     <title>Phantom Wallet Integration</title>
  <!--   <script src="https://cdn.jsdelivr.net/npm/@metaplex-foundation/mpl-nft-packs@0.1.1/dist/src/mpl-nft-packs.min.js"></script>-->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
 
 </head>
 <body>
@@ -79,7 +80,7 @@ mainaddress=response.publicKey.toString()
 const provider = getProvider(); // see "Detecting the Provider"
 const network = "https://api.devnet.solana.com";
 //const connection = new Connection(network);
-const transaction = new Transaction();
+const transaction = new solanaWeb3.Transaction();
 const { signature } = await provider.signAndSendTransaction(transaction);
 await connection.getSignatureStatus(signature);
 
