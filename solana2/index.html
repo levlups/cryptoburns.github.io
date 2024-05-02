@@ -21,7 +21,7 @@ async function connectWallet(){
     try {
                     const response = await window.solana.connect();
                     console.log("Connected with Public Key:", response.publicKey.toString());
-//mainaddress=response.publicKey.toString()
+wallet=response.publicKey.toString()
                     // Optionally, fetch balances after connecting
                  //   await getSolBalance();
                     // Replace 'MintAddressHere' with your SPL token's mint address
