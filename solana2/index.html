@@ -18,14 +18,19 @@ var wallet;
 const lamports_per_sol= solanaWeb3.LAMPORTS_PER_SOL;
 function connectWallet(){
 
-    (async() => {
     try {
-    const resp = await window.solana.connect();
-    wallet = resp;
-    // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo 
-} catch (err) {
-    // { code: 4001, message: 'User rejected the request.' }
-}
+                    const response = await window.solana.connect();
+                    console.log("Connected with Public Key:", response.publicKey.toString());
+//mainaddress=response.publicKey.toString()
+                    // Optionally, fetch balances after connecting
+                    await getSolBalance();
+                    // Replace 'MintAddressHere' with your SPL token's mint address
+                   // await getSplTokenBalance('DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G');// hami
+                     await getSplTokenBalance('5Jozez85huvwbjkNxuQZpJvK8mydZAXtpbZ8RBY6or5');
+                   
+                } catch (error) {
+                    console.error(error);
+                }
 })();
 window.solana.on("connect", () => document.getElementById("status").innerText="Connected")
 
