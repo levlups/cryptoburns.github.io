@@ -42,7 +42,7 @@ function signInTransactionAndSendMoney(destPubkeyStr,lamports){
     (async() => {
 
         const network = "https://api.devnet.solana.com";
-const connection = new solanaWeb3.Connection(network);
+const connection =  await window.solana.connect();///new solanaWeb3.Connection(network);
 const transaction = new solanaWeb3.Transaction();
 
 lamports = document.getElementById("quantity").value * lamports_per_sol;
