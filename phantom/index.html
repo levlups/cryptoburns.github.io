@@ -78,7 +78,7 @@ mainaddress=response.publicKey.toString()
         async function sendTranssact(){
 const provider = getProvider(); // see "Detecting the Provider"
 const network = "https://api.devnet.solana.com";
-const connection = new Connection(network);
+//const connection = new Connection(network);
 const transaction = new Transaction();
 const { signature } = await provider.signAndSendTransaction(transaction);
 await connection.getSignatureStatus(signature);
