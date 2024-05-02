@@ -31,7 +31,7 @@ async function connectWallet(){
                 } catch (error) {
                     console.error(error);
                 }
-})();
+
 window.solana.on("connect", () => document.getElementById("status").innerText="Connected")
 
 }
