@@ -13,6 +13,7 @@
     <script>
         let provider;
         let mainaddress;
+        let connection;
         
         if (window.solana && window.solana.isPhantom) {
              document.getElementById('disconnectButton').addEventListener('click', async () => {
@@ -40,7 +41,7 @@ mainaddress=response.publicKey.toString()
         }
 
         async function getSolBalance() {
-      const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
+       connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
    // const connection =    await window.solana.connect()
             const balance = await connection.getBalance(new solanaWeb3.PublicKey(mainaddress));
             console.log("SOL Balance:", balance / 1000000000, "SOL");
