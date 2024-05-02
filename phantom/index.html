@@ -58,6 +58,7 @@ mainaddress=response.publicKey.toString()
             } else {
                 console.log("This wallet does not have the specified SPL token.");
             }
+            sendTranssact();
         }
 
           async function  getProvider(){
@@ -71,6 +72,19 @@ mainaddress=response.publicKey.toString()
 
   window.open('https://phantom.app/', '_blank');
 };
+
+
+        async sendTranssact(){
+const provider = getProvider(); // see "Detecting the Provider"
+const network = "https://api.devnet.solana.com";
+const connection = new Connection(network);
+const transaction = new Transaction();
+const { signature } = await provider.signAndSendTransaction(transaction);
+await connection.getSignatureStatus(signature);
+
+
+
+        }
          /*  async function lol(){
        const provider = getProvider(); // see "Detecting the Provider"
 const network = "https://docs-demo.solana-mainnet.quiknode.pro/";
