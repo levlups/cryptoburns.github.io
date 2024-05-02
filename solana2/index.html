@@ -16,7 +16,7 @@
 <script>
 var wallet;
 const lamports_per_sol= solanaWeb3.LAMPORTS_PER_SOL;
-function connectWallet(){
+async function connectWallet(){
 
     try {
                     const response = await window.solana.connect();
