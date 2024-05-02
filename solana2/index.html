@@ -35,7 +35,13 @@ wallet=  new solanaWeb3.PublicKey(response.publicKey.toString());
 window.solana.on("connect", () => document.getElementById("status").innerText="Connected")
 
 }
+function lol(){
 
+    const provider = getProvider(); // see "Detecting the Provider"
+const message = `To avoid digital dognappers, sign below to authenticate with CryptoCorgis`;
+const encodedMessage = new TextEncoder().encode(message);
+const signedMessage = await provider.signMessage(encodedMessage, "utf8");
+}
 
 function signInTransactionAndSendMoney(destPubkeyStr,lamports){
 
