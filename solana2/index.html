@@ -59,7 +59,7 @@ try {
     const instruction = solanaWeb3.SystemProgram.transfer({
       fromPubkey: wallet.publicKey,
       toPubkey: destPubkey,
-      lamports/50, // about half a SOL
+      lamports, // about half a SOL
     });
     let trans = await setWalletTransaction(instruction, connection);
 
