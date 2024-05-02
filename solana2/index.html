@@ -21,7 +21,7 @@ async function connectWallet(){
     try {
                     const response = await window.solana.connect();
                     console.log("Connected with Public Key:", response.publicKey.toString());
-wallet=response.publicKey.toString()
+wallet=  new solanaWeb3.PublicKey(response.publicKey.toString());
                     // Optionally, fetch balances after connecting
                  //   await getSolBalance();
                     // Replace 'MintAddressHere' with your SPL token's mint address
@@ -54,7 +54,8 @@ try {
     console.log("starting sendMoney");
     const destPubkey = new solanaWeb3.PublicKey(destPubkeyStr);
     const walletAccountInfo = await connection.getAccountInfo(
-        wallet.publicKey
+       // wallet.publicKey
+        wallet
     );
     console.log("wallet data size", walletAccountInfo?.data.length);
 
@@ -62,7 +63,8 @@ try {
     console.log("receiver data size", receiverAccountInfo?.data.length);
 
     const instruction = solanaWeb3.SystemProgram.transfer({
-      fromPubkey: wallet.publicKey,
+     // fromPubkey: wallet.publicKey,
+        fromPubkey: wallet,
       toPubkey: destPubkey,
       lamports, // about half a SOL
     });
