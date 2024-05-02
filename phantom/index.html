@@ -9,10 +9,17 @@
 </head>
 <body>
     <button id="connectButton">Connect to Phantom Wallet</button>
+     <button id="disconnectButton">Disconnect</button>
     <script>
+        let provider;
         let mainaddress;
         
         if (window.solana && window.solana.isPhantom) {
+             document.getElementById('disconnectButton').addEventListener('click', async () => {
+
+provider.disconnect();
+                    });
+                 
             document.getElementById('connectButton').addEventListener('click', async () => {
                 try {
                     const response = await window.solana.connect();
@@ -55,7 +62,7 @@ mainaddress=response.publicKey.toString()
 
           async function  getProvider(){
   if ('phantom' in window) {
-    const provider = window.phantom?.solana;
+     provider = window.phantom?.solana;
 
     if (provider?.isPhantom) {
       return provider;
