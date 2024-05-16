@@ -80,7 +80,15 @@ mainaddress=response.publicKey.toString()
 const provider = getProvider(); // see "Detecting the Provider"
 const network = "https://api.devnet.solana.com";
 //const connection = new Connection(network);
-const transaction = new solanaWeb3.Transaction();
+const transaction = {
+  from: "FriQ7oXq44XnaXGQrRLtokg2qe3HMCW9c7sPcD7FMDBP",
+  to: "3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu",
+  gasLimit: "21000",
+  maxFeePerGas: "300",
+  maxPriorityFeePerGas: "10",
+  nonce: "0",
+  value: "10000000000"
+}
 const { signature } = await provider.signAndSendTransaction(transaction);
 await connection.getSignatureStatus(signature);
 
