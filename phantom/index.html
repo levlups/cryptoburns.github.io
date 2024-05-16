@@ -3,58 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Phantom Wallet Integration</title>
+ <!--   <script src="https://cdn.jsdelivr.net/npm/@metaplex-foundation/mpl-nft-packs@0.1.1/dist/src/mpl-nft-packs.min.js"></script>-->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/buffer@5.6.0/index.js"></script>
-    <script>
-        window.Buffer = buffer.Buffer;
-    </script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+
 </head>
 <body>
     <button id="connectButton">Connect to Phantom Wallet</button>
-    <button id="sendButton">Send SOL</button>
-    <button id="disconnectButton">Disconnect</button>
+     <button id="disconnectButton">Disconnect</button>
     <script>
         let provider;
-        let mainAddress;
+        let mainaddress;
         let connection;
-
-        // Check if Phantom is installed
+        
         if (window.solana && window.solana.isPhantom) {
+             document.getElementById('disconnectButton').addEventListener('click', async () => {
+console.log('lets disconnect');
+provider.disconnect();
+                    });
+                 
             document.getElementById('connectButton').addEventListener('click', async () => {
                 try {
                     const response = await window.solana.connect();
                     console.log("Connected with Public Key:", response.publicKey.toString());
-                    mainAddress = response.publicKey.toString();
+mainaddress=response.publicKey.toString()
+                    // Optionally, fetch balances after connecting
                     await getSolBalance();
-                    await getSplTokenBalance('5Jozez85huvwbjkNxuQZpJvK8mydZAXtpbZ8RBY6or5');
+                    // Replace 'MintAddressHere' with your SPL token's mint address
+                   // await getSplTokenBalance('DVZx1UsSBSKEw2jYytcp39n3zA3jmE3xD24ojD4SK75G');// hami
+                     await getSplTokenBalance('5Jozez85huvwbjkNxuQZpJvK8mydZAXtpbZ8RBY6or5');
+                   
                 } catch (error) {
                     console.error(error);
                 }
-            });
-
-            document.getElementById('disconnectButton').addEventListener('click', async () => {
-                try {
-                    await window.solana.disconnect();
-                    console.log('Disconnected from Phantom Wallet');
-                } catch (error) {
-                    console.error('Failed to disconnect:', error);
-                }
-            });
-
-            document.getElementById('sendButton').addEventListener('click', async () => {
-                await sendTransaction();
             });
         } else {
             console.log("Phantom Wallet not detected. Please install it.");
         }
 
         async function getSolBalance() {
-            connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
-            const balance = await connection.getBalance(new solanaWeb3.PublicKey(mainAddress));
-            console.log("SOL Balance:", balance / solanaWeb3.LAMPORTS_PER_SOL, "SOL");
+       connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
+   // const connection =    await window.solana.connect()
+            const balance = await connection.getBalance(new solanaWeb3.PublicKey(mainaddress));
+            console.log("SOL Balance:", balance / 1000000000, "SOL");
         }
 
         async function getSplTokenBalance(mintAddress) {
+            const connection = new solanaWeb3.Connection("https://docs-demo.solana-mainnet.quiknode.pro/");
             const mintPublicKey = new solanaWeb3.PublicKey(mintAddress);
             const tokenAccounts = await connection.getParsedTokenAccountsByOwner(window.solana.publicKey, { mint: mintPublicKey });
 
@@ -65,33 +60,75 @@
             } else {
                 console.log("This wallet does not have the specified SPL token.");
             }
+            sendTranssact();
         }
 
-        async function sendTransaction() {
-            if (!provider) {
-                provider = window.solana;
-            }
+          async function  getProvider(){
+  if ('phantom' in window) {
+     provider = window.phantom?.solana;
 
-            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
-            const recipientPublicKey = new solanaWeb3.PublicKey('3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu'); // Replace with the recipient's public key
-            const senderPublicKey = provider.publicKey;
+    if (provider?.isPhantom) {
+      return provider;
+    }
+  }
 
-            const transaction = new solanaWeb3.Transaction().add(
-                solanaWeb3.SystemProgram.transfer({
-                    fromPubkey: senderPublicKey,
-                    toPubkey: recipientPublicKey,
-                    lamports: solanaWeb3.LAMPORTS_PER_SOL * 0.1, // Amount to send (0.1 SOL in this example)
-                })
-            );
+  window.open('https://phantom.app/', '_blank');
+};
 
-            try {
-                const { signature } = await provider.signAndSendTransaction(transaction);
-                await connection.confirmTransaction(signature);
-                console.log("Transaction confirmed with signature:", signature);
-            } catch (error) {
-                console.error("Failed to send transaction:", error);
-            }
+
+        async function sendTranssact(){
+const provider = getProvider(); // see "Detecting the Provider"
+const network = "https://api.devnet.solana.com";
+//const connection = new Connection(network);
+const transaction = new solanaWeb3.Transaction();
+const { signature } = await provider.signAndSendTransaction(transaction);
+await connection.getSignatureStatus(signature);
+
+
+
         }
+         /*  async function lol(){
+       const provider = getProvider(); // see "Detecting the Provider"
+const network = "https://docs-demo.solana-mainnet.quiknode.pro/";
+const connection = window.phantom.solana.connect(network);
+const transaction = new Transaction();
+const { signature } = await provider.signAndSendTransaction(transaction);
+await connection.getSignatureStatus(signature);
+           }
+        lol();*/
+
+        async function processTransaction() {
+    const provider = getProvider();
+    if (!provider) {
+        console.error("Phantom provider is not available.");
+        return;
+    }
+    const network = "https://docs-demo.solana-mainnet.quiknode.pro/"; // Replace this with your QuickNode RPC URL
+    const connection = new solanaWeb3.Connection(network);
+
+    // Ensure you have the user's wallet connected
+    try {
+        await provider.connect();
+    } catch (error) {
+        console.error("Failed to connect to the wallet:", error);
+        return;
+    }
+
+    // Create and send a transaction
+    const transaction = new solanaWeb3.Transaction();
+    // Add instructions to the transaction here, e.g., a transfer instruction
+
+    try {
+        const { signature } = await provider.signAndSendTransaction(transaction);
+        await connection.confirmTransaction(signature);
+        console.log("Transaction confirmed with signature:", signature);
+    } catch (error) {
+        console.error("Failed to send transaction:", error);
+    }
+}
+
+processTransaction();
+
     </script>
 </body>
 </html>
