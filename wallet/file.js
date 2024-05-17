@@ -6,7 +6,7 @@ document.getElementById('sendSolanaButton').addEventListener('click', async () =
             console.log('Connected with public key:', resp.publicKey.toString());
 
             // Specify the recipient and the amount of SOL to send
-            const recipient = 'YOUR_RECIPIENT_ADDRESS';
+            const recipient = '3XZwt8wCPJ5UeGvvBJyj3hYE5pRzZ9wADgtb4PBCd6Uu';
             const amountInSol = 1;
             const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
 
